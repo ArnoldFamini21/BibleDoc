@@ -394,3 +394,15 @@ function bibledoc_script_loader_tag( $tag, $handle ) {
     return $tag;
 }
 add_filter( 'script_loader_tag', 'bibledoc_script_loader_tag', 10, 2 );
+
+/**
+ * Override site name to BibleDoc.org
+ */
+function bibledoc_override_bloginfo( $output, $show ) {
+    if ( $show === 'name' ) {
+        return 'BibleDoc.org';
+    }
+    return $output;
+}
+add_filter( 'bloginfo', 'bibledoc_override_bloginfo', 10, 2 );
+add_filter( 'bloginfo_url', 'bibledoc_override_bloginfo', 10, 2 );
