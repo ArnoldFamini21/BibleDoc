@@ -35,14 +35,17 @@
         const darkModeToggle = document.querySelector('.dark-mode-toggle');
         const body = document.body;
         const html = document.documentElement;
+        const moonIcon = document.querySelector('.moon-icon');
+        const sunIcon = document.querySelector('.sun-icon');
 
         // Check for saved dark mode preference
         const darkMode = localStorage.getItem('darkMode');
         if (darkMode === 'enabled') {
             body.classList.add('dark-mode');
             html.classList.add('dark-mode');
-            if (darkModeToggle) {
-                darkModeToggle.textContent = '☀️';
+            if (moonIcon && sunIcon) {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
             }
         }
 
@@ -56,7 +59,10 @@
                     html.classList.remove('dark-mode');
                     body.removeAttribute('data-theme');
                     html.removeAttribute('data-theme');
-                    darkModeToggle.textContent = '🌙';
+                    if (moonIcon && sunIcon) {
+                        moonIcon.style.display = 'block';
+                        sunIcon.style.display = 'none';
+                    }
                     localStorage.setItem('darkMode', 'disabled');
                 } else {
                     // Turn on dark mode
@@ -64,7 +70,10 @@
                     html.classList.add('dark-mode');
                     body.setAttribute('data-theme', 'dark');
                     html.setAttribute('data-theme', 'dark');
-                    darkModeToggle.textContent = '☀️';
+                    if (moonIcon && sunIcon) {
+                        moonIcon.style.display = 'none';
+                        sunIcon.style.display = 'block';
+                    }
                     localStorage.setItem('darkMode', 'enabled');
                 }
 
