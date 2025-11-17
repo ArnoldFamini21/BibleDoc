@@ -749,7 +749,7 @@ body.dark-mode .dark-mode-toggle:hover {
 
 .search-input {
     width: 100%;
-    padding: 1rem 1.5rem;
+    padding: 1rem 3.5rem 1rem 1.5rem;
     font-size: 1rem;
     background: var(--white);
     border: 2px solid var(--border);
@@ -1641,7 +1641,9 @@ textarea:focus {
 
 .search-submit {
     position: absolute;
-    right: 1rem;
+    right: 0.25rem;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
     cursor: pointer;
@@ -1650,7 +1652,8 @@ textarea:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem;
+    padding: 0.75rem;
+    height: calc(100% - 0.5rem);
 }
 
 .search-submit svg {
@@ -1660,7 +1663,7 @@ textarea:focus {
 
 .search-submit:hover {
     color: var(--primary);
-    transform: scale(1.1);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .search-submit:hover svg {
