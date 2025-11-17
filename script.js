@@ -34,11 +34,13 @@
     function initDarkMode() {
         const darkModeToggle = document.querySelector('.dark-mode-toggle');
         const body = document.body;
+        const html = document.documentElement;
 
         // Check for saved dark mode preference
         const darkMode = localStorage.getItem('darkMode');
         if (darkMode === 'enabled') {
             body.classList.add('dark-mode');
+            html.classList.add('dark-mode');
             if (darkModeToggle) {
                 darkModeToggle.textContent = '☀️';
             }
@@ -46,8 +48,13 @@
 
         if (darkModeToggle) {
             darkModeToggle.addEventListener('click', function() {
+                // Toggle dark mode on both body and html
                 body.classList.toggle('dark-mode');
-                
+                html.classList.toggle('dark-mode');
+
+                // Force a reflow to ensure all styles are applied immediately
+                void body.offsetHeight;
+
                 // Update icon
                 if (body.classList.contains('dark-mode')) {
                     darkModeToggle.textContent = '☀️';
@@ -56,6 +63,13 @@
                     darkModeToggle.textContent = '🌙';
                     localStorage.setItem('darkMode', 'disabled');
                 }
+
+                // Force update all elements
+                const allElements = document.querySelectorAll('*');
+                allElements.forEach(function(el) {
+                    // Trigger repaint by accessing offsetHeight
+                    void el.offsetHeight;
+                });
             });
         }
     }

@@ -47,6 +47,13 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Smooth transitions for dark mode toggle */
+*,
+*::before,
+*::after {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
 body::before {
     content: '';
     position: fixed;
