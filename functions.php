@@ -169,7 +169,7 @@ add_action( 'wp_head', 'bibledoc_track_post_views' );
  * Custom excerpt length
  */
 function bibledoc_excerpt_length( $length ) {
-    return 30;
+    return 25; // 25 words for consistency
 }
 add_filter( 'excerpt_length', 'bibledoc_excerpt_length', 999 );
 
@@ -503,51 +503,6 @@ function bibledoc_responsive_image( $attachment_id, $size = 'full', $class = '' 
              'class="' . esc_attr( $class ) . '" ' .
              'loading="lazy">';
     }
-}
-
-/**
- * Custom excerpt length
- */
-function bibledoc_excerpt_length( $length ) {
-    return 25; // 25 words for consistency
-}
-add_filter( 'excerpt_length', 'bibledoc_excerpt_length', 999 );
-
-/**
- * Custom excerpt more text
- */
-function bibledoc_excerpt_more( $more ) {
-    return '...';
-}
-add_filter( 'excerpt_more', 'bibledoc_excerpt_more' );
-
-/**
- * Calculate reading time
- */
-function bibledoc_reading_time() {
-    $content = get_post_field( 'post_content', get_the_ID() );
-    $word_count = str_word_count( strip_tags( $content ) );
-    $reading_time = ceil( $word_count / 200 ); // Average reading speed: 200 words per minute
-
-    if ( $reading_time < 1 ) {
-        $reading_time = 1;
-    }
-
-    return $reading_time;
-}
-
-/**
- * Display reading time
- */
-function bibledoc_display_reading_time() {
-    $reading_time = bibledoc_reading_time();
-    echo '<span class="reading-time">';
-    printf(
-        /* translators: %s: Reading time in minutes */
-        esc_html( _n( '%s min read', '%s min read', $reading_time, 'bibledoc-modern' ) ),
-        number_format_i18n( $reading_time )
-    );
-    echo '</span>';
 }
 
 /**
