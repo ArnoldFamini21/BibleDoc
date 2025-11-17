@@ -419,7 +419,6 @@ function bibledoc_default_menu() {
         'About'         => home_url( '/about/' ),
         'Contact'       => home_url( '/contact/' ),
         'Eugene\'s Blog' => home_url( '/eugenes-blog/' ),
-        'Support'       => home_url( '/support/' ),
     );
 
     echo '<ul class="primary-menu">';
@@ -447,7 +446,6 @@ function bibledoc_create_default_menu() {
             array( 'title' => 'About', 'url' => home_url( '/about/' ) ),
             array( 'title' => 'Contact', 'url' => home_url( '/contact/' ) ),
             array( 'title' => 'Eugene\'s Blog', 'url' => home_url( '/eugenes-blog/' ) ),
-            array( 'title' => 'Support', 'url' => home_url( '/support/' ) ),
         );
 
         // Add menu items
