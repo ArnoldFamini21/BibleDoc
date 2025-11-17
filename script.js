@@ -48,27 +48,40 @@
 
         if (darkModeToggle) {
             darkModeToggle.addEventListener('click', function() {
-                // Toggle dark mode on both body and html
-                body.classList.toggle('dark-mode');
-                html.classList.toggle('dark-mode');
+                const isDarkMode = body.classList.contains('dark-mode');
 
-                // Force a reflow to ensure all styles are applied immediately
-                void body.offsetHeight;
-
-                // Update icon
-                if (body.classList.contains('dark-mode')) {
-                    darkModeToggle.textContent = '☀️';
-                    localStorage.setItem('darkMode', 'enabled');
-                } else {
+                if (isDarkMode) {
+                    // Turn off dark mode
+                    body.classList.remove('dark-mode');
+                    html.classList.remove('dark-mode');
+                    body.removeAttribute('data-theme');
+                    html.removeAttribute('data-theme');
                     darkModeToggle.textContent = '🌙';
                     localStorage.setItem('darkMode', 'disabled');
+                } else {
+                    // Turn on dark mode
+                    body.classList.add('dark-mode');
+                    html.classList.add('dark-mode');
+                    body.setAttribute('data-theme', 'dark');
+                    html.setAttribute('data-theme', 'dark');
+                    darkModeToggle.textContent = '☀️';
+                    localStorage.setItem('darkMode', 'enabled');
                 }
 
-                // Force update all elements
-                const allElements = document.querySelectorAll('*');
-                allElements.forEach(function(el) {
-                    // Trigger repaint by accessing offsetHeight
-                    void el.offsetHeight;
+                // Force immediate repaint using multiple techniques
+                requestAnimationFrame(function() {
+                    // Force style recalculation
+                    void document.body.offsetHeight;
+
+                    // Force repaint on all major containers
+                    const containers = document.querySelectorAll('body, .main-navigation, .hero-section, .site-footer, .post-card, article, .widget, .post-content');
+                    containers.forEach(function(el) {
+                        if (el) {
+                            el.style.display = 'none';
+                            void el.offsetHeight;
+                            el.style.display = '';
+                        }
+                    });
                 });
             });
         }

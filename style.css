@@ -47,13 +47,6 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Smooth transitions for dark mode toggle */
-*,
-*::before,
-*::after {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
-}
-
 body::before {
     content: '';
     position: fixed;
@@ -78,21 +71,25 @@ body::before {
 }
 
 /* Dark Mode */
-body.dark-mode {
-    --white: #0f172a;
-    --bg-light: #1e293b;
-    --dark: #e2e8f0;
-    --dark-lighter: #cbd5e1;
-    --border: #334155;
-    --gray: #cbd5e1;
-    --gray-light: #94a3b8;
-    --gray-lighter: #64748b;
-    --primary: #60a5fa;
-    --primary-dark: #3b82f6;
-    --secondary: #f87171;
+body.dark-mode,
+body[data-theme="dark"],
+html.dark-mode,
+html[data-theme="dark"] {
+    --white: #0f172a !important;
+    --bg-light: #1e293b !important;
+    --dark: #e2e8f0 !important;
+    --dark-lighter: #cbd5e1 !important;
+    --border: #334155 !important;
+    --gray: #cbd5e1 !important;
+    --gray-light: #94a3b8 !important;
+    --gray-lighter: #64748b !important;
+    --primary: #60a5fa !important;
+    --primary-dark: #3b82f6 !important;
+    --secondary: #f87171 !important;
 }
 
-body.dark-mode::before {
+body.dark-mode::before,
+body[data-theme="dark"]::before {
     background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(239, 68, 68, 0.08) 0%, transparent 50%);
 }
