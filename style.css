@@ -210,6 +210,206 @@ body.dark-mode .search-input::placeholder {
     color: #64748b;
 }
 
+/* Dark Mode - Additional comprehensive coverage */
+body.dark-mode .hero-content,
+body.dark-mode .hero-image,
+body.dark-mode .search-container,
+body.dark-mode .search-form,
+body.dark-mode .filter-sort,
+body.dark-mode .posts-grid,
+body.dark-mode .post-grid,
+body.dark-mode article,
+body.dark-mode .entry-content,
+body.dark-mode .entry-header,
+body.dark-mode .site-main,
+body.dark-mode .content-area,
+body.dark-mode #primary,
+body.dark-mode #secondary,
+body.dark-mode .sidebar,
+body.dark-mode .widget-area,
+body.dark-mode .author-bio,
+body.dark-mode .related-posts,
+body.dark-mode .comment-list,
+body.dark-mode .comment-respond,
+body.dark-mode .comment-form,
+body.dark-mode .footer-content,
+body.dark-mode .footer-widgets,
+body.dark-mode .footer-container,
+body.dark-mode .nav-container,
+body.dark-mode .site-branding,
+body.dark-mode .category-card,
+body.dark-mode .view-toggle,
+body.dark-mode .controls {
+    background: transparent;
+}
+
+body.dark-mode table {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode table th {
+    background: #0f172a;
+    color: #e2e8f0;
+    border-color: #334155;
+}
+
+body.dark-mode table td {
+    border-color: #334155;
+    color: #cbd5e1;
+}
+
+body.dark-mode hr {
+    border-color: #334155;
+}
+
+body.dark-mode .primary-menu li a {
+    color: #e2e8f0;
+}
+
+body.dark-mode .primary-menu li a:hover {
+    color: #60a5fa;
+}
+
+body.dark-mode .footer-menu li a {
+    color: #94a3b8;
+}
+
+body.dark-mode .footer-menu li a:hover {
+    color: #60a5fa;
+}
+
+body.dark-mode .comment {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .comment-author,
+body.dark-mode .comment-metadata {
+    color: #94a3b8;
+}
+
+body.dark-mode .author-bio {
+    background: #1e293b !important;
+    border-color: #334155;
+}
+
+body.dark-mode .related-posts {
+    background: transparent !important;
+}
+
+body.dark-mode .category-card {
+    background: #1e293b !important;
+    border-color: #334155;
+}
+
+body.dark-mode .category-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode button,
+body.dark-mode .button,
+body.dark-mode input[type="submit"],
+body.dark-mode input[type="button"] {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-color: #334155;
+}
+
+body.dark-mode button:hover,
+body.dark-mode .button:hover,
+body.dark-mode input[type="submit"]:hover,
+body.dark-mode input[type="button"]:hover {
+    background: #334155;
+    border-color: #475569;
+}
+
+body.dark-mode .search-btn,
+body.dark-mode .search-submit {
+    background: #3b82f6;
+    color: #fff;
+    border-color: #3b82f6;
+}
+
+body.dark-mode .search-btn:hover,
+body.dark-mode .search-submit:hover {
+    background: #60a5fa;
+    border-color: #60a5fa;
+}
+
+body.dark-mode .filter-select,
+body.dark-mode .sort-select {
+    background: #0f172a;
+    color: #e2e8f0;
+    border-color: #334155;
+}
+
+body.dark-mode .view-grid,
+body.dark-mode .view-list {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-color: #334155;
+}
+
+body.dark-mode .view-grid.active,
+body.dark-mode .view-list.active {
+    background: #60a5fa;
+    color: #0f172a;
+    border-color: #60a5fa;
+}
+
+body.dark-mode .pagination {
+    background: transparent;
+}
+
+body.dark-mode .pagination a,
+body.dark-mode .pagination span {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-color: #334155;
+}
+
+body.dark-mode .pagination a:hover,
+body.dark-mode .pagination .current {
+    background: #60a5fa;
+    color: #0f172a;
+    border-color: #60a5fa;
+}
+
+/* Dark Mode - Catch-all for any remaining white backgrounds */
+body.dark-mode * {
+    border-color: #334155;
+}
+
+body.dark-mode img {
+    opacity: 0.9;
+}
+
+body.dark-mode .hero-section .hero-image div {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+}
+
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode span,
+body.dark-mode td,
+body.dark-mode label {
+    color: #cbd5e1;
+}
+
+body.dark-mode strong,
+body.dark-mode b {
+    color: #e2e8f0;
+}
+
+body.dark-mode .site-title a {
+    color: #f1f5f9;
+}
+
+body.dark-mode .site-title a:hover {
+    color: #60a5fa;
+}
+
 /* Animations */
 @keyframes fadeInUp {
     from {
