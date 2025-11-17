@@ -1,0 +1,56 @@
+BIBLEDOC MODERN WORDPRESS THEME
+===============================
+
+All theme files are located in: /mnt/user-data/outputs/bibledoc-theme/
+
+THEME FILES LIST:
+-----------------
+
+Core Theme Files:
+1. style.css - Main stylesheet
+2. functions.php - Theme functions
+3. header.php - Header template
+4. footer.php - Footer template
+5. index.php - Main blog template
+6. single.php - Single post template
+7. page.php - Page template
+8. 404.php - Error page template
+9. searchform.php - Search form
+
+JavaScript:
+10. js/script.js - Interactive features
+
+Documentation:
+11. README.md - Complete documentation
+12. SCREENSHOT_INFO.txt - Screenshot instructions
+
+DOWNLOAD INSTRUCTIONS:
+---------------------
+Click on each file link below to view/download:
+
+computer:///mnt/user-data/outputs/bibledoc-theme/style.css
+computer:///mnt/user-data/outputs/bibledoc-theme/functions.php
+computer:///mnt/user-data/outputs/bibledoc-theme/header.php
+computer:///mnt/user-data/outputs/bibledoc-theme/footer.php
+computer:///mnt/user-data/outputs/bibledoc-theme/index.php
+computer:///mnt/user-data/outputs/bibledoc-theme/single.php
+computer:///mnt/user-data/outputs/bibledoc-theme/page.php
+computer:///mnt/user-data/outputs/bibledoc-theme/404.php
+computer:///mnt/user-data/outputs/bibledoc-theme/searchform.php
+computer:///mnt/user-data/outputs/bibledoc-theme/js/script.js
+computer:///mnt/user-data/outputs/bibledoc-theme/README.md
+computer:///mnt/user-data/outputs/bibledoc-theme/SCREENSHOT_INFO.txt
+
+TO USE:
+-------
+1. Download all files
+2. Create folder structure:
+   bibledoc-theme/
+   ├── js/
+   │   └── script.js
+   └── (all other files)
+   
+3. Zip the entire "bibledoc-theme" folder
+4. Upload to WordPress
+
+Or download the entire folder if your system allows.

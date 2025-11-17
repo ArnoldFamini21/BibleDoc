@@ -1,0 +1,41 @@
+THEME SCREENSHOT INSTRUCTIONS
+=============================
+
+To complete your WordPress theme installation, you need to add a screenshot.
+
+Requirements:
+- File name: screenshot.png
+- Dimensions: 1200 x 900 pixels (4:3 ratio)
+- Format: PNG
+- Location: Place in the theme's root directory (same folder as style.css)
+
+What to Include:
+Create a screenshot that shows:
+- Your theme's homepage design
+- The hero section with title and search
+- A few post cards displaying
+- The navigation bar
+- Overall color scheme and typography
+
+How to Create:
+1. Set up a demo WordPress site with your theme activated
+2. Add some sample posts with featured images
+3. Take a screenshot of the homepage
+4. Crop to 1200 x 900 pixels
+5. Save as screenshot.png
+6. Place in: /wp-content/themes/bibledoc-theme/
+
+Or Use Design Software:
+1. Open Photoshop, Figma, or similar tool
+2. Create a 1200 x 900 px canvas
+3. Design a mockup of your theme's homepage
+4. Export as PNG
+5. Name it screenshot.png
+
+The screenshot appears in:
+- Appearance > Themes in WordPress admin
+- Theme selection screen
+- WordPress.org theme directory (if you submit theme)
+
+Note: Without a screenshot, the theme will still work perfectly, but it will show
+a blank placeholder in the WordPress themes screen.
