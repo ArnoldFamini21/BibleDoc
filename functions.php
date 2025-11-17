@@ -406,6 +406,9 @@ function bibledoc_override_bloginfo( $output, $show ) {
 }
 add_filter( 'bloginfo', 'bibledoc_override_bloginfo', 10, 2 );
 add_filter( 'bloginfo_url', 'bibledoc_override_bloginfo', 10, 2 );
+add_filter( 'option_blogname', function( $blogname ) {
+    return 'BibleDoc.org';
+}, 10, 1 );
 
 /**
  * Default navigation menu fallback
