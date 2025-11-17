@@ -93,7 +93,7 @@ function bibledoc_scripts() {
     wp_enqueue_style( 'bibledoc-style', get_stylesheet_uri(), array(), '1.0.0' );
 
     // Custom JavaScript
-    wp_enqueue_script( 'bibledoc-script', get_template_directory_uri() . '/js/script.js', array(), '1.0.0', true );
+    wp_enqueue_script( 'bibledoc-script', get_template_directory_uri() . '/script.js', array(), '1.0.0', true );
 
     // Localize script for AJAX
     wp_localize_script( 'bibledoc-script', 'bibledocAjax', array(
