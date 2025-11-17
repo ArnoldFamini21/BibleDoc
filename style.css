@@ -4,7 +4,7 @@ Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
 Author URI: https://arnoldfamini.com
 Description: A modern, sleek WordPress theme for biblical studies and theological content with dark mode, mobile menu, and engaging animations.
-Version: 1.1.0
+Version: 1.1.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: bibledoc-modern
@@ -1640,19 +1640,19 @@ textarea:focus {
 }
 
 .search-submit {
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
+    position: absolute !important;
+    right: 0.75rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: none !important;
+    border: none !important;
     cursor: pointer;
     color: var(--gray);
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.25rem;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.25rem !important;
 }
 
 .search-submit svg {
