@@ -3,12 +3,12 @@ Theme Name: Bibledoc Modern
 Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
 Author URI: https://arnoldfamini.com
-Description: A modern, sleek WordPress theme for biblical studies and theological content with dark mode, mobile menu, and engaging animations.
-Version: 1.2.0
+Description: A modern, sleek WordPress theme for biblical studies and theological content with dark mode, mobile menu, social sharing, related posts, and engaging animations.
+Version: 1.3.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: bibledoc-modern
-Tags: blog, education, religious, two-columns, right-sidebar, custom-menu, featured-images, theme-options, dark-mode
+Tags: blog, education, religious, two-columns, right-sidebar, custom-menu, featured-images, theme-options, dark-mode, responsive
 
 This theme, like WordPress, is licensed under the GPL.
 */
@@ -2048,6 +2048,569 @@ textarea:focus {
         flex-direction: column;
         text-align: center;
     }
+}
+
+/* ============================================
+   Social Sharing Buttons
+   ============================================ */
+
+.social-share {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--bg-light);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.social-share-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.social-share-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.share-btn svg {
+    flex-shrink: 0;
+}
+
+.share-twitter {
+    background: #1da1f2;
+    color: white;
+}
+
+.share-twitter:hover {
+    background: #1a8cd8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 161, 242, 0.3);
+}
+
+.share-facebook {
+    background: #1877f2;
+    color: white;
+}
+
+.share-facebook:hover {
+    background: #1664d8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
+}
+
+.share-linkedin {
+    background: #0a66c2;
+    color: white;
+}
+
+.share-linkedin:hover {
+    background: #095196;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(10, 102, 194, 0.3);
+}
+
+/* Dark mode social share */
+body.dark-mode .social-share,
+html.dark-mode .social-share {
+    background: var(--dark-lighter);
+    border-color: var(--gray);
+}
+
+body.dark-mode .social-share-title,
+html.dark-mode .social-share-title {
+    color: var(--white);
+}
+
+/* ============================================
+   Related Posts
+   ============================================ */
+
+.related-posts {
+    margin: 4rem 0;
+    padding: 3rem 0;
+    border-top: 2px solid var(--border);
+}
+
+.related-posts-title,
+.related-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--dark);
+}
+
+.related-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.related-post-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.related-post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.related-post-thumbnail {
+    display: block;
+    overflow: hidden;
+}
+
+.related-post-thumbnail img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.related-post-card:hover .related-post-thumbnail img {
+    transform: scale(1.05);
+}
+
+.related-post-content {
+    padding: 1.5rem;
+}
+
+.related-post-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.related-post-title a {
+    color: var(--dark);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.related-post-title a:hover {
+    color: var(--primary);
+}
+
+.related-post-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: var(--gray-light);
+}
+
+/* Dark mode related posts */
+body.dark-mode .related-posts,
+html.dark-mode .related-posts {
+    border-top-color: var(--gray);
+}
+
+body.dark-mode .related-posts-title,
+body.dark-mode .related-title,
+html.dark-mode .related-posts-title,
+html.dark-mode .related-title {
+    color: var(--white);
+}
+
+body.dark-mode .related-post-card,
+html.dark-mode .related-post-card {
+    background: var(--dark-lighter);
+    border-color: var(--gray);
+}
+
+body.dark-mode .related-post-title a,
+html.dark-mode .related-post-title a {
+    color: var(--white);
+}
+
+/* ============================================
+   404 Error Page
+   ============================================ */
+
+.error-404-page {
+    min-height: 70vh;
+}
+
+.error-404-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.error-404-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+}
+
+.error-404-number {
+    font-size: 8rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.error-404-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.error-404-message {
+    font-size: 1.125rem;
+    color: var(--gray);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.error-404-search {
+    margin: 3rem 0;
+}
+
+.error-404-search h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+}
+
+.error-404-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--dark);
+    border-color: var(--border);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-light);
+    border-color: var(--gray-light);
+}
+
+.error-404-popular {
+    margin-top: 4rem;
+}
+
+.error-404-popular h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--dark);
+    text-align: center;
+}
+
+/* Dark mode 404 */
+body.dark-mode .error-404-title,
+body.dark-mode .error-404-search h2,
+body.dark-mode .error-404-popular h2,
+html.dark-mode .error-404-title,
+html.dark-mode .error-404-search h2,
+html.dark-mode .error-404-popular h2 {
+    color: var(--white);
+}
+
+body.dark-mode .error-404-message,
+html.dark-mode .error-404-message {
+    color: var(--gray-lighter);
+}
+
+body.dark-mode .btn-secondary,
+html.dark-mode .btn-secondary {
+    color: var(--white);
+    border-color: var(--gray);
+}
+
+body.dark-mode .btn-secondary:hover,
+html.dark-mode .btn-secondary:hover {
+    background: var(--dark-lighter);
+}
+
+/* ============================================
+   Comments Styling
+   ============================================ */
+
+.comments-area {
+    margin-top: 4rem;
+    padding: 3rem 0;
+    border-top: 2px solid var(--border);
+}
+
+.comments-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--dark);
+}
+
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comment {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-light);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.comment-body {
+    display: flex;
+    gap: 1rem;
+}
+
+.comment-author .avatar {
+    border-radius: 50%;
+    border: 2px solid var(--border);
+}
+
+.comment-meta {
+    margin-bottom: 1rem;
+}
+
+.comment-author cite {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--dark);
+}
+
+.comment-metadata {
+    font-size: 0.875rem;
+    color: var(--gray-light);
+    margin-top: 0.25rem;
+}
+
+.comment-metadata a {
+    color: var(--gray-light);
+    text-decoration: none;
+}
+
+.comment-metadata a:hover {
+    color: var(--primary);
+}
+
+.comment-content {
+    margin: 1rem 0;
+    line-height: 1.7;
+    color: var(--gray);
+}
+
+.comment-content p {
+    margin-bottom: 1rem;
+}
+
+.reply {
+    margin-top: 1rem;
+}
+
+.comment-reply-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.comment-reply-link:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.children {
+    list-style: none;
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+.comment-respond {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--bg-light);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.comment-reply-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+}
+
+.comment-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"],
+.comment-form textarea {
+    width: 100%;
+    padding: 0.875rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.comment-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.comment-form .form-submit {
+    margin-top: 1rem;
+}
+
+.comment-form .submit {
+    padding: 0.875rem 2rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.comment-form .submit:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Dark mode comments */
+body.dark-mode .comments-area,
+html.dark-mode .comments-area {
+    border-top-color: var(--gray);
+}
+
+body.dark-mode .comments-title,
+body.dark-mode .comment-reply-title,
+html.dark-mode .comments-title,
+html.dark-mode .comment-reply-title {
+    color: var(--white);
+}
+
+body.dark-mode .comment,
+body.dark-mode .comment-respond,
+html.dark-mode .comment,
+html.dark-mode .comment-respond {
+    background: var(--dark-lighter);
+    border-color: var(--gray);
+}
+
+body.dark-mode .comment-author cite,
+body.dark-mode .comment-form label,
+html.dark-mode .comment-author cite,
+html.dark-mode .comment-form label {
+    color: var(--white);
+}
+
+body.dark-mode .comment-content,
+html.dark-mode .comment-content {
+    color: var(--gray-lighter);
+}
+
+body.dark-mode .comment-form input,
+body.dark-mode .comment-form textarea,
+html.dark-mode .comment-form input,
+html.dark-mode .comment-form textarea {
+    background: var(--dark);
+    border-color: var(--gray);
+    color: var(--white);
+}
+
+body.dark-mode .comment-author .avatar,
+html.dark-mode .comment-author .avatar {
+    border-color: var(--gray);
+}
+
+/* ============================================
+   Reading Time Indicator
+   ============================================ */
+
+.reading-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--gray-light);
+}
+
+.post-reading-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 /* Print Styles */

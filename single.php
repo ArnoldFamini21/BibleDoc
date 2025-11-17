@@ -97,10 +97,7 @@ get_header();
                                 </div>
                             <?php endif; ?>
 
-                            <div class="post-share">
-                                <span class="share-label"><?php esc_html_e( 'Share this post:', 'bibledoc-modern' ); ?></span>
-                                <?php bibledoc_social_share(); ?>
-                            </div>
+                            <?php bibledoc_social_sharing(); ?>
                         </footer>
 
                         <?php
