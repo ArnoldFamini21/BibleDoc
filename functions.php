@@ -406,3 +406,62 @@ function bibledoc_override_bloginfo( $output, $show ) {
 }
 add_filter( 'bloginfo', 'bibledoc_override_bloginfo', 10, 2 );
 add_filter( 'bloginfo_url', 'bibledoc_override_bloginfo', 10, 2 );
+
+/**
+ * Default navigation menu fallback
+ */
+function bibledoc_default_menu() {
+    $menu_items = array(
+        'Topics'        => home_url( '/topics/' ),
+        'About'         => home_url( '/about/' ),
+        'Contact'       => home_url( '/contact/' ),
+        'Eugene\'s Blog' => home_url( '/eugenes-blog/' ),
+        'Support'       => home_url( '/support/' ),
+    );
+
+    echo '<ul class="primary-menu">';
+    foreach ( $menu_items as $title => $url ) {
+        echo '<li><a href="' . esc_url( $url ) . '">' . esc_html( $title ) . '</a></li>';
+    }
+    echo '</ul>';
+}
+
+/**
+ * Create default primary menu on theme activation
+ */
+function bibledoc_create_default_menu() {
+    // Check if menu already exists
+    $menu_name = 'Primary Menu';
+    $menu_exists = wp_get_nav_menu_object( $menu_name );
+
+    if ( ! $menu_exists ) {
+        // Create the menu
+        $menu_id = wp_create_nav_menu( $menu_name );
+
+        // Menu items to add
+        $menu_items = array(
+            array( 'title' => 'Topics', 'url' => home_url( '/topics/' ) ),
+            array( 'title' => 'About', 'url' => home_url( '/about/' ) ),
+            array( 'title' => 'Contact', 'url' => home_url( '/contact/' ) ),
+            array( 'title' => 'Eugene\'s Blog', 'url' => home_url( '/eugenes-blog/' ) ),
+            array( 'title' => 'Support', 'url' => home_url( '/support/' ) ),
+        );
+
+        // Add menu items
+        foreach ( $menu_items as $index => $item ) {
+            wp_update_nav_menu_item( $menu_id, 0, array(
+                'menu-item-title'    => $item['title'],
+                'menu-item-url'      => $item['url'],
+                'menu-item-status'   => 'publish',
+                'menu-item-position' => $index + 1,
+                'menu-item-type'     => 'custom',
+            ) );
+        }
+
+        // Assign menu to primary location
+        $locations = get_theme_mod( 'nav_menu_locations' );
+        $locations['primary'] = $menu_id;
+        set_theme_mod( 'nav_menu_locations', $locations );
+    }
+}
+add_action( 'after_switch_theme', 'bibledoc_create_default_menu' );

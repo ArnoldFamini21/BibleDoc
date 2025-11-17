@@ -36,7 +36,7 @@
                 'theme_location' => 'primary',
                 'menu_class'     => 'primary-menu',
                 'container'      => false,
-                'fallback_cb'    => false,
+                'fallback_cb'    => 'bibledoc_default_menu',
             ) );
             ?>
 
