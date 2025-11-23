@@ -2,8 +2,8 @@
 Theme Name: Bibledoc Modern
 Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
-Description: A faithful recreation of the classic Bibledoc design.
-Version: 1.0.22
+Description: A faithful recreation of the classic Bibledoc design with mobile optimization.
+Version: 1.0.23
 */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -78,7 +78,7 @@ nav.main-navigation {
 .header-search-bar .search-form { flex: 1; display: flex; gap: 0.5rem; }
 .header-search-bar input { flex: 1; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; }
 .header-search-bar .search-submit { background: var(--primary); color: #fff; border: none; padding: 0 1rem; border-radius: 4px; }
-.header-search-bar .search-close { background: none; border: none; font-size: 1.5rem; color: #333; }
+.header-search-bar .search-close { background: none; border: none; font-size: 1.5rem; color: #333; cursor: pointer; }
 
 /* HERO */
 .hero-wrapper {
@@ -123,16 +123,133 @@ nav.main-navigation {
 .hero-col-image {
     width: 45%; display: flex; align-items: flex-end; justify-content: flex-end;
 }
-/* Smaller Image Height */
 .hero-col-image img {
-    width: auto; height: 320px; display: block; vertical-align: bottom; filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5));
+    width: auto; height: 320px; display: block; vertical-align: bottom; 
+    filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5));
 }
 
-/* RESPONSIVE */
+/* CONTENT */
+.content-section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+.section-title-red { 
+    color: #991b1b; font-family: 'Outfit', sans-serif; font-size: 1.8rem; 
+    font-weight: 600; margin-bottom: 2rem; 
+}
+.posts-list-grid { 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 3rem 4rem; 
+}
+.list-item { 
+    border-bottom: 1px solid #e5e7eb; padding-bottom: 1.2rem; margin-bottom: 0.5rem; 
+}
+.list-title { 
+    font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 400; color: #1f2937; 
+}
+.list-title a:hover { color: #dc2626; }
+.list-meta { 
+    font-size: 0.8rem; color: #6b7280; text-transform: uppercase; font-weight: 600; 
+}
+
+/* FOOTER */
+.site-footer { 
+    background: #111827; color: #9ca3af; padding: 4rem 2rem; 
+    text-align: center; margin-top: 4rem; 
+}
+
+/* ================================
+   MOBILE OPTIMIZATION STYLES
+   ================================ */
+
+/* Mobile Search Modal */
+.mobile-search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.mobile-search-modal.active {
+    display: flex;
+}
+
+.mobile-search-container {
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+}
+
+.mobile-search-modal input[type="search"] {
+    width: 100%;
+    padding: 20px 60px 20px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    background: var(--white);
+    color: var(--dark);
+}
+
+.mobile-search-modal input[type="search"]::placeholder {
+    color: #999;
+}
+
+.mobile-search-close {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: var(--dark);
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Overlay for Menu */
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    display: none;
+}
+
+.mobile-overlay.active {
+    display: block;
+}
+
+/* Smooth transitions */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button, a {
+    -webkit-touch-callout: none;
+}
+
+/* ================================
+   RESPONSIVE / MOBILE STYLES
+   ================================ */
+
 @media (max-width: 1024px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: flex !important; }
     
+    /* Hero adjustments for tablet/mobile */
     .hero-wrapper { 
         height: 100vh !important; 
         min-height: 600px;
@@ -148,19 +265,164 @@ nav.main-navigation {
     .hero-title { font-size: 3rem; }
     .hero-description { font-size: 1.4rem; margin-bottom: 0; }
     
-    .primary-menu.active {
-        display: flex; flex-direction: column; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-        background: #1f2937; padding: 6rem 2rem; gap: 2rem; text-align: center; align-items: center; z-index: 999;
+    /* Mobile Menu */
+    .primary-menu {
+        display: none;
     }
-    .primary-menu.active li { width: 100%; }
-    .primary-menu.active a { font-size: 1.5rem; justify-content: center; }
+    
+    .primary-menu.active {
+        display: flex; 
+        flex-direction: column; 
+        position: fixed; 
+        top: 0; 
+        right: 0;
+        width: 80%; 
+        max-width: 350px;
+        height: 100vh;
+        background: #1f2937; 
+        padding: 6rem 2rem; 
+        gap: 2rem; 
+        text-align: left;
+        align-items: flex-start; 
+        z-index: 999;
+        overflow-y: auto;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    }
+    
+    .primary-menu.active li { 
+        width: 100%; 
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding-bottom: 1rem;
+    }
+    
+    .primary-menu.active a { 
+        font-size: 1.3rem; 
+        display: block;
+        padding: 0.5rem 0;
+    }
+    
+    /* Submenu adjustments for mobile */
+    .primary-menu.active ul.sub-menu {
+        position: static;
+        display: block;
+        background: transparent;
+        padding: 0.5rem 0 0 1rem;
+        box-shadow: none;
+    }
+    
+    .primary-menu.active ul.sub-menu a {
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+        border-bottom: none;
+    }
+    
+    /* Mobile menu toggle animation */
+    .mobile-menu-toggle.active .menu-icon {
+        content: '✕';
+    }
+    
+    /* Content adjustments */
+    .content-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .posts-list-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
 }
 
-.content-section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
-.section-title-red { color: #991b1b; font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 2rem; }
-.posts-list-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem 4rem; }
-.list-item { border-bottom: 1px solid #e5e7eb; padding-bottom: 1.2rem; margin-bottom: 0.5rem; }
-.list-title { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 400; color: #1f2937; }
-.list-title a:hover { color: #dc2626; }
-.list-meta { font-size: 0.8rem; color: #6b7280; text-transform: uppercase; font-weight: 600; }
-.site-footer { background: #111827; color: #9ca3af; padding: 4rem 2rem; text-align: center; margin-top: 4rem; }
+@media (max-width: 768px) {
+    /* Further mobile optimizations */
+    .nav-container {
+        padding: 0 1.5rem;
+    }
+    
+    .site-title {
+        font-size: 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-description {
+        font-size: 1.2rem;
+    }
+    
+    .section-title-red {
+        font-size: 1.5rem;
+    }
+    
+    .list-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Small mobile devices */
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-description {
+        font-size: 1.1rem;
+    }
+    
+    .site-title {
+        font-size: 1.3rem;
+    }
+    
+    .primary-menu.active {
+        width: 90%;
+    }
+    
+    .header-actions {
+        gap: 1rem;
+    }
+}
+
+/* Accessibility improvements */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Screen reader only text */
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
