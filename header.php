@@ -63,7 +63,7 @@
 
         <section class="hero-section">
             <div class="hero-content">
-                <div class="hero-badge"><?php esc_html_e( 'Biblical Resources', 'bibledoc-modern' ); ?></div>
+                <div class="hero-badge"><?php echo esc_html( get_theme_mod( 'hero_badge_text', 'Biblical Resources' ) ); ?></div>
                 <h1 class="hero-title"><?php echo esc_html( get_theme_mod( 'hero_title', 'Looking for answers?' ) ); ?></h1>
                 <p class="hero-description"><?php echo esc_html( get_theme_mod( 'hero_subtitle', 'I help friends to understand their Bibles!' ) ); ?></p>
                 
@@ -72,10 +72,16 @@
                 </div>
                 
                 <div class="hero-tags">
-                    <span>Popular:</span>
-                    <a href="#prophecy">Prophecy</a>
-                    <a href="#doctrine">Doctrine</a>
-                    <a href="#lifestyle">Lifestyle</a>
+                    <span><?php esc_html_e( 'Popular:', 'bibledoc-modern' ); ?></span>
+                    <?php
+                    $tags_input = get_theme_mod( 'hero_popular_tags', 'Prophecy, Doctrine, Lifestyle' );
+                    $tags_array = array_map( 'trim', explode( ',', $tags_input ) );
+                    
+                    foreach ( $tags_array as $tag ) {
+                        // Create a simple anchor link (points to search results for that tag)
+                        echo '<a href="' . esc_url( home_url( '/?s=' . urlencode( $tag ) ) ) . '">' . esc_html( $tag ) . '</a>';
+                    }
+                    ?>
                 </div>
             </div>
 
