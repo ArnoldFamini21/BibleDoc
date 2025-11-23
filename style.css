@@ -3,7 +3,7 @@ Theme Name: Bibledoc Modern
 Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
 Description: A faithful recreation of the classic Bibledoc design with modern code.
-Version: 1.0.4
+Version: 1.0.5
 */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -71,9 +71,7 @@ nav.main-navigation {
     align-items: center;
 }
 
-.primary-menu li {
-    position: relative;
-}
+.primary-menu li { position: relative; }
 
 .primary-menu a {
     color: rgba(255, 255, 255, 0.9);
@@ -121,10 +119,8 @@ nav.main-navigation {
     background-color: var(--bg-dark);
     background-size: cover;
     background-position: center;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    overflow: hidden; /* Ensures the pushed-down image gets cut cleanly */
+    /* Remove flex here to allow inner section to control height */
+    display: block; 
 }
 
 .hero-overlay {
@@ -136,21 +132,20 @@ nav.main-navigation {
 
 .hero-section {
     max-width: 1200px;
-    width: 100%;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
     z-index: 2;
-    height: 600px;
+    min-height: 650px; /* Set height here */
     display: flex;
-    align-items: center;
+    align-items: center; /* Vertically center text */
 }
 
 .hero-content {
     max-width: 600px;
     position: relative;
-    z-index: 3;
-    margin-top: -50px;
+    z-index: 3; /* Above image */
+    margin-top: 4rem; /* Push down slightly for balance */
 }
 
 .hero-title {
@@ -190,23 +185,17 @@ nav.main-navigation {
     font-weight: 300;
 }
 
-.hero-search .search-field::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
+.hero-search .search-field::placeholder { color: rgba(255, 255, 255, 0.7); }
+.hero-search .search-field:focus { background: rgba(255, 255, 255, 0.15); border-color: var(--white); }
 
-.hero-search .search-field:focus {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: var(--white);
-}
-
-/* Person Image - FIXED (Grounded) */
+/* Person Image - FIXED LAYOUT */
 .hero-person {
     position: absolute;
-    bottom: -50px; /* Pushes image down to look grounded */
+    bottom: 0;
     right: 0;
     z-index: 2;
-    width: 50%;
-    max-width: 600px;
+    width: 45%;
+    height: auto;
     pointer-events: none;
     display: flex;
     align-items: flex-end;
@@ -214,11 +203,10 @@ nav.main-navigation {
 }
 
 .hero-person img {
+    max-height: 550px; /* Control height so it fits nicely */
     width: auto;
-    max-height: 580px; /* Made larger */
     display: block;
-    /* Shadow behind the person, not under */
-    filter: drop-shadow(-10px 0 20px rgba(0,0,0,0.5)); 
+    filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5));
 }
 
 /* --- CONTENT AREA --- */
@@ -283,26 +271,24 @@ nav.main-navigation {
         flex-direction: column;
         text-align: center;
         padding-top: 8rem;
-        height: auto;
-        min-height: 700px;
+        min-height: auto;
         display: block;
+        padding-bottom: 0;
     }
     
-    .hero-content {
-        margin: 0 auto;
-        margin-top: 0;
-    }
+    .hero-content { margin: 0 auto; margin-bottom: 2rem; }
 
     .hero-person {
         position: relative;
-        width: 70%;
-        max-width: 350px;
-        margin: 3rem auto 0;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
         right: auto;
-        bottom: -20px; /* Less push on mobile */
+        bottom: auto;
         justify-content: center;
     }
     
+    .hero-person img { max-height: 350px; }
     .hero-search .search-form { margin: 0 auto; }
     .nav-menu-wrapper { display: none; } 
 }
