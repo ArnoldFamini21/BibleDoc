@@ -69,15 +69,15 @@
         
         <div class="hero-grid">
             <div class="hero-col-text">
-                <h1 class="hero-title" style="font-family: 'Outfit', sans-serif; color: #ffffff !important; line-height: 1.1; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5);"><?php echo esc_html( get_theme_mod( 'hero_title', 'Looking for answers?' ) ); ?></h1>
-                <p class="hero-description" style="font-family: 'Georgia', serif; font-style: italic; color: #eeeeee !important; font-weight: 300;"><?php echo esc_html( get_theme_mod( 'hero_subtitle', 'I help friends to understand their Bibles!' ) ); ?></p>
+                <h1 class="hero-title"><?php echo esc_html( get_theme_mod( 'hero_title', 'Looking for answers?' ) ); ?></h1>
+                <p class="hero-description"><?php echo esc_html( get_theme_mod( 'hero_subtitle', 'I help friends to understand their Bibles!' ) ); ?></p>
             </div>
 
             <div class="hero-col-image">
                 <?php
                 $hero_person = get_theme_mod( 'hero_image', 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png' );
                 if ( $hero_person ) : ?>
-                    <img src="<?php echo esc_url( $hero_person ); ?>" alt="Person" style="filter: drop-shadow(-10px 0 20px rgba(0,0,0,0.5));">
+                    <img src="<?php echo esc_url( $hero_person ); ?>" alt="Person">
                 <?php endif; ?>
             </div>
         </div>
