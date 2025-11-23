@@ -40,10 +40,11 @@
 
 <?php if ( is_front_page() ) : ?>
     <?php 
-    $bg_image = get_theme_mod('hero_bg_image', 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2000&auto=format&fit=crop');
+    // UPDATED: Removed '&fit=crop' to get full image context
+    $bg_image = get_theme_mod('hero_bg_image', 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2500&auto=format');
     ?>
     
-    <div class="hero-wrapper" style="background-image: url('<?php echo esc_url($bg_image); ?>'); background-size: 100% auto; background-position: center top; background-repeat: no-repeat; background-color: #1a1d21; position: relative; height: 550px; overflow: hidden; display: flex; align-items: center;">
+    <div class="hero-wrapper" style="background-image: url('<?php echo esc_url($bg_image); ?>'); position: relative; height: 600px; overflow: hidden; display: flex; align-items: center; background-size: 100% auto; background-position: center 30%; background-repeat: no-repeat; background-color: #1a1d21;">
         <div class="hero-overlay" style="position: absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(90deg, rgba(10,10,20,0.9) 0%, rgba(10,10,20,0.7) 50%, rgba(10,10,20,0.3) 100%); z-index: 1;"></div>
         
         <div class="hero-grid" style="max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 10; height: 100%; display: flex;">
