@@ -83,7 +83,7 @@
                 <?php
                 $hero_person = get_theme_mod( 'hero_image', 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png' );
                 if ( $hero_person ) : ?>
-                    <img src="<?php echo esc_url( $hero_person ); ?>" alt="Person">
+                    <img src="<?php echo esc_url( $hero_person ); ?>" alt="Person" style="max-height: 320px; width: auto; filter: drop-shadow(-10px 0 20px rgba(0,0,0,0.5));">
                 <?php endif; ?>
             </div>
         </div>
