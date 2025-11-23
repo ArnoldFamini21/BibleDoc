@@ -343,3 +343,39 @@
     }
 
 })();
+// Hero Mouse Parallax Effect
+    function initHeroParallax() {
+        const heroSection = document.querySelector('.hero-section');
+        const heroImage = document.querySelector('.hero-img-element');
+        const heroBadge = document.querySelector('.hero-badge');
+
+        if (!heroSection || window.innerWidth < 1024) return;
+
+        heroSection.addEventListener('mousemove', function(e) {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            // Move image slightly
+            if (heroImage) {
+                const moveX = (x - 0.5) * 20; // Move max 20px
+                const moveY = (y - 0.5) * 20;
+                // Keep the existing rotation
+                heroImage.style.transform = `perspective(1000px) rotateY(${moveX * 0.5}deg) rotateX(${-moveY * 0.5}deg) rotate(-2deg)`;
+            }
+
+            // Move badge slightly opposite
+            if (heroBadge) {
+                const moveX = (x - 0.5) * -15;
+                const moveY = (y - 0.5) * -15;
+                heroBadge.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            }
+        });
+        
+        // Reset on mouse leave
+        heroSection.addEventListener('mouseleave', function() {
+            if (heroImage) heroImage.style.transform = 'rotate(-2deg)';
+            if (heroBadge) heroBadge.style.transform = 'translate(0,0)';
+        });
+    }
+
+    // Add initHeroParallax() inside your main init() function
