@@ -15,10 +15,10 @@
 <div id="header-search-bar" class="header-search-bar">
     <div class="search-bar-container">
         <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-            <input type="search" class="search-field" placeholder="Search website..." value="" name="s" />
-            <button type="submit" class="search-submit">Search</button>
+            <input type="search" class="search-field" placeholder="Search..." value="" name="s" />
+            <button type="submit" class="search-submit">Go</button>
         </form>
-        <button class="search-close" aria-label="Close search">×</button>
+        <button class="search-close" aria-label="Close">✕</button>
     </div>
 </div>
 
@@ -43,15 +43,15 @@
             ?>
             
             <div class="header-actions">
-                <button class="header-search-toggle" aria-label="Open search">
-                    <span class="search-icon">🔍</span>
+                <button class="header-search-toggle mobile-only" aria-label="Search">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </button>
                 
                 <a href="<?php echo esc_url( get_theme_mod( 'support_url', '#support' ) ); ?>" class="support-btn desktop-only">
                     <?php esc_html_e( 'Support', 'bibledoc-modern' ); ?>
                 </a>
 
-                <button class="mobile-menu-toggle" aria-label="Open menu">
+                <button class="mobile-menu-toggle mobile-only" aria-label="Menu">
                     <span class="menu-icon">☰</span>
                 </button>
             </div>
@@ -71,9 +71,15 @@
             <div class="hero-col-text">
                 <h1 class="hero-title"><?php echo esc_html( get_theme_mod( 'hero_title', 'Looking for answers?' ) ); ?></h1>
                 <p class="hero-description"><?php echo esc_html( get_theme_mod( 'hero_subtitle', 'I help friends to understand their Bibles!' ) ); ?></p>
+                
+                <div class="hero-search desktop-only">
+                    <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                        <input type="search" class="search-field" placeholder="Search entire website..." value="<?php echo get_search_query(); ?>" name="s" />
+                    </form>
+                </div>
             </div>
 
-            <div class="hero-col-image">
+            <div class="hero-col-image desktop-only">
                 <?php
                 $hero_person = get_theme_mod( 'hero_image', 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png' );
                 if ( $hero_person ) : ?>
