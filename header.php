@@ -46,8 +46,9 @@
     <div class="hero-wrapper" style="background-image: url('<?php echo esc_url($bg_image); ?>');">
         <div class="hero-overlay"></div>
         
-        <section class="hero-section">
-            <div class="hero-content">
+        <div class="hero-container">
+            
+            <div class="hero-col-text">
                 <h1 class="hero-title"><?php echo esc_html( get_theme_mod( 'hero_title', 'Looking for answers?' ) ); ?></h1>
                 <p class="hero-description"><?php echo esc_html( get_theme_mod( 'hero_subtitle', 'I help friends to understand their Bibles!' ) ); ?></p>
                 
@@ -57,14 +58,15 @@
                     </form>
                 </div>
             </div>
-        </section>
 
-        <div class="hero-person">
-            <?php
-            $hero_person = get_theme_mod( 'hero_image', 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png' );
-            if ( $hero_person ) : ?>
-                <img src="<?php echo esc_url( $hero_person ); ?>" alt="Person">
-            <?php endif; ?>
+            <div class="hero-col-image">
+                <?php
+                $hero_person = get_theme_mod( 'hero_image', 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png' );
+                if ( $hero_person ) : ?>
+                    <img src="<?php echo esc_url( $hero_person ); ?>" alt="Person">
+                <?php endif; ?>
+            </div>
+
         </div>
     </div>
 <?php else : ?>
