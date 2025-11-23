@@ -3,7 +3,7 @@ Theme Name: Bibledoc Modern
 Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
 Description: A faithful recreation of the classic Bibledoc design with modern code.
-Version: 1.0.7
+Version: 1.0.9
 */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -111,17 +111,15 @@ nav.main-navigation {
 
 .support-btn:hover { background: #b91c1c; }
 
-/* --- HERO SECTION --- */
+/* --- HERO SECTION (FLEXBOX ALIGNMENT) --- */
 .hero-wrapper {
     position: relative;
     background-color: var(--bg-dark);
     background-size: cover;
     background-position: center;
-    /* Fixed minimum height for the whole dark area */
-    min-height: 550px; 
+    min-height: 600px; /* Fixed min-height */
     display: flex;
-    align-items: center; /* Centers the TEXT vertically */
-    overflow: hidden;
+    align-items: flex-end; /* Anchors everything to bottom */
 }
 
 .hero-overlay {
@@ -131,25 +129,31 @@ nav.main-navigation {
     z-index: 1;
 }
 
-.hero-section {
-    max-width: 1200px;
+/* The Main Layout Container */
+.hero-container {
     width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
-    z-index: 3; /* Text sits above everything */
+    z-index: 2;
+    height: 100%;
+    min-height: 600px; /* Matches wrapper to force full expansion */
     display: flex;
-    align-items: center;
+    justify-content: space-between;
 }
 
-.hero-content {
-    max-width: 600px;
+/* Left Column: Text */
+.hero-col-text {
+    flex: 1;
+    align-self: center; /* Vertically Center Text */
+    padding-bottom: 50px; /* Visual adjustment */
 }
 
 .hero-title {
     font-family: 'Outfit', sans-serif;
     font-size: 4.2rem;
-    color: var(--white);
+    color: #ffffff !important; /* Forced White */
     line-height: 1.1;
     margin-bottom: 1rem;
     font-weight: 500;
@@ -174,7 +178,7 @@ nav.main-navigation {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.25);
     padding: 1.1rem 1.5rem;
-    color: var(--white);
+    color: #ffffff;
     font-size: 1.1rem;
     border-radius: 3px;
     outline: none;
@@ -185,23 +189,20 @@ nav.main-navigation {
 .hero-search .search-field::placeholder { color: rgba(255, 255, 255, 0.7); }
 .hero-search .search-field:focus { background: rgba(255, 255, 255, 0.15); border-color: var(--white); }
 
-/* Person Image - ANCHORED */
-.hero-person {
-    position: absolute;
-    bottom: 0; /* Force to bottom edge */
-    right: 10%; /* Indent from right edge for better composition */
-    z-index: 2; /* Behind text if overlap, above background */
-    width: auto;
-    height: auto;
-    pointer-events: none;
+
+/* Right Column: Image */
+.hero-col-image {
+    width: 45%;
+    display: flex;
+    align-items: flex-end; /* KEY: Forces image to bottom floor */
+    justify-content: flex-end;
 }
 
-.hero-person img {
-    max-height: 500px; /* Limits height so it doesn't hit the top nav */
+.hero-col-image img {
     width: auto;
+    max-height: 500px;
     display: block;
-    /* Ensure no inline gap at bottom */
-    vertical-align: bottom; 
+    vertical-align: bottom; /* Removes line-height gaps */
     filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5));
 }
 
@@ -262,34 +263,26 @@ nav.main-navigation {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
-    .hero-wrapper {
-        display: block; /* Stack vertically */
-        min-height: auto; /* Let content dictate height */
-    }
-
-    .hero-section {
-        padding-top: 8rem;
-        padding-bottom: 2rem;
-        display: block;
-        text-align: center;
-    }
-    
-    .hero-content { margin: 0 auto; }
-    .hero-search .search-form { margin: 0 auto; }
-    
-    /* On mobile, image goes relative below text */
-    .hero-person {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        width: 100%;
-        display: flex;
+    .hero-container {
+        flex-direction: column;
         justify-content: center;
-        margin-top: 2rem;
+        padding-top: 8rem;
     }
     
-    .hero-person img { max-height: 350px; }
+    .hero-col-text {
+        width: 100%;
+        text-align: center;
+        flex: 0 0 auto;
+        margin-bottom: 2rem;
+    }
     
+    .hero-col-image {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hero-col-image img { max-height: 350px; }
+    .hero-search .search-form { margin: 0 auto; }
     .nav-menu-wrapper { display: none; } 
 }
 
