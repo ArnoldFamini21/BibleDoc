@@ -3,7 +3,7 @@ Theme Name: Bibledoc Modern
 Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
 Description: A faithful recreation of the classic Bibledoc design with modern code.
-Version: 1.0.1
+Version: 1.0.2
 */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,7 +35,7 @@ nav.main-navigation {
     width: 100%;
     z-index: 100;
     padding: 1.5rem 0;
-    background: transparent; /* Transparent on top of dark hero */
+    background: transparent;
 }
 
 .nav-container {
@@ -175,12 +175,15 @@ nav.main-navigation {
     position: relative;
     bottom: -4rem; /* Push slightly down to mimic cutout alignment */
     right: 0;
+    display: flex;
+    align-items: flex-end;
 }
 
 .hero-person img {
-    max-height: 450px;
+    max-height: 500px;
     width: auto;
     display: block;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
 }
 
 /* --- CONTENT AREA (Replicated Lists) --- */
@@ -256,6 +259,7 @@ nav.main-navigation {
     .hero-person {
         bottom: 0;
         margin-top: 2rem;
+        justify-content: center;
     }
     
     .hero-person img { max-height: 300px; }
@@ -264,18 +268,6 @@ nav.main-navigation {
 }
 
 @media (max-width: 768px) {
-    .primary-menu { display: none; } /* Mobile menu logic handles this */
+    .primary-menu { display: none; } 
     .hero-title { font-size: 2.5rem; }
-    .site-title { z-index: 101; position: relative; }
-    
-    /* Mobile Menu Toggle Style */
-    .mobile-menu-toggle {
-        background: transparent;
-        border: 1px solid rgba(255,255,255,0.3);
-        color: white;
-        padding: 0.5rem 1rem;
-        font-size: 1.2rem;
-        display: block;
-        cursor: pointer;
-    }
 }
