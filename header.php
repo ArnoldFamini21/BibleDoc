@@ -12,6 +12,7 @@
 
 <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'bibledoc-modern' ); ?></a>
 
+<!-- Desktop Header Search Bar (existing) -->
 <div id="header-search-bar" class="header-search-bar">
     <div class="search-bar-container">
         <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
