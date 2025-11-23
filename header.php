@@ -28,6 +28,7 @@
                 'theme_location' => 'primary',
                 'menu_class'     => 'primary-menu',
                 'container'      => false,
+                'fallback_cb'    => false,
             ) );
             ?>
 
@@ -40,7 +41,6 @@
 
 <?php if ( is_front_page() ) : ?>
     <?php 
-    // Get background image (defaults to Unsplash image if not set in functions.php, but we set it there)
     $bg_image = get_theme_mod('hero_bg_image', 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2000&auto=format&fit=crop');
     ?>
     
