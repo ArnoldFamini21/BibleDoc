@@ -3,7 +3,7 @@ Theme Name: Bibledoc Modern
 Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
 Description: A faithful recreation of the classic Bibledoc design with modern code.
-Version: 1.0.6
+Version: 1.0.7
 */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -86,7 +86,6 @@ nav.main-navigation {
 
 .primary-menu a:hover { color: var(--white); }
 
-/* Dropdown Arrow */
 .primary-menu .menu-item-has-children > a::after {
     content: '';
     border: solid white;
@@ -98,7 +97,6 @@ nav.main-navigation {
     opacity: 0.8;
 }
 
-/* Support Button */
 .support-btn {
     background: #dc2626;
     color: white !important;
@@ -119,7 +117,11 @@ nav.main-navigation {
     background-color: var(--bg-dark);
     background-size: cover;
     background-position: center;
-    display: block; 
+    /* Fixed minimum height for the whole dark area */
+    min-height: 550px; 
+    display: flex;
+    align-items: center; /* Centers the TEXT vertically */
+    overflow: hidden;
 }
 
 .hero-overlay {
@@ -131,21 +133,17 @@ nav.main-navigation {
 
 .hero-section {
     max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
-    z-index: 2;
-    /* Reduced height to remove gap */
-    min-height: 500px; 
+    z-index: 3; /* Text sits above everything */
     display: flex;
     align-items: center;
 }
 
 .hero-content {
     max-width: 600px;
-    position: relative;
-    z-index: 3; 
-    margin-top: 2rem;
 }
 
 .hero-title {
@@ -166,7 +164,6 @@ nav.main-navigation {
     font-weight: 300;
 }
 
-/* Transparent Search Bar */
 .hero-search .search-form {
     max-width: 550px;
     position: relative;
@@ -188,25 +185,23 @@ nav.main-navigation {
 .hero-search .search-field::placeholder { color: rgba(255, 255, 255, 0.7); }
 .hero-search .search-field:focus { background: rgba(255, 255, 255, 0.15); border-color: var(--white); }
 
-/* Person Image */
+/* Person Image - ANCHORED */
 .hero-person {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: 2;
-    width: 45%;
+    bottom: 0; /* Force to bottom edge */
+    right: 10%; /* Indent from right edge for better composition */
+    z-index: 2; /* Behind text if overlap, above background */
+    width: auto;
     height: auto;
     pointer-events: none;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
 }
 
 .hero-person img {
-    /* Matched to section min-height to fill space cleanly */
-    max-height: 500px; 
+    max-height: 500px; /* Limits height so it doesn't hit the top nav */
     width: auto;
     display: block;
+    /* Ensure no inline gap at bottom */
+    vertical-align: bottom; 
     filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5));
 }
 
@@ -257,7 +252,6 @@ nav.main-navigation {
     font-weight: 600;
 }
 
-/* --- FOOTER --- */
 .site-footer {
     background: #111827;
     color: #9ca3af;
@@ -268,29 +262,34 @@ nav.main-navigation {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
+    .hero-wrapper {
+        display: block; /* Stack vertically */
+        min-height: auto; /* Let content dictate height */
+    }
+
     .hero-section {
-        flex-direction: column;
-        text-align: center;
         padding-top: 8rem;
-        padding-bottom: 4rem;
-        min-height: auto;
+        padding-bottom: 2rem;
         display: block;
+        text-align: center;
     }
     
-    .hero-content { margin: 0 auto; margin-bottom: 2rem; }
-
+    .hero-content { margin: 0 auto; }
+    .hero-search .search-form { margin: 0 auto; }
+    
+    /* On mobile, image goes relative below text */
     .hero-person {
         position: relative;
-        width: 100%;
-        max-width: 400px;
-        margin: 0 auto;
         right: auto;
-        bottom: -4rem; /* Pull image down to edge on mobile */
+        bottom: auto;
+        width: 100%;
+        display: flex;
         justify-content: center;
+        margin-top: 2rem;
     }
     
     .hero-person img { max-height: 350px; }
-    .hero-search .search-form { margin: 0 auto; }
+    
     .nav-menu-wrapper { display: none; } 
 }
 
