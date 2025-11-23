@@ -75,9 +75,10 @@ add_action( 'widgets_init', 'bibledoc_widgets_init' );
 
 /**
  * Enqueue scripts and styles
+ * VERSION BUMPED TO 1.0.9 TO FIX CACHE ISSUES
  */
 function bibledoc_scripts() {
-    wp_enqueue_style( 'bibledoc-style', get_stylesheet_uri(), array(), '1.0.2' );
+    wp_enqueue_style( 'bibledoc-style', get_stylesheet_uri(), array(), '1.0.9' ); 
     wp_enqueue_script( 'bibledoc-script', get_template_directory_uri() . '/js/script.js', array(), '1.0.0', true );
 
     wp_localize_script( 'bibledoc-script', 'bibledocAjax', array(
@@ -183,9 +184,9 @@ function bibledoc_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'hero_subtitle', array( 'default' => 'I help friends to understand their Bibles!', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'hero_subtitle', array( 'label' => __( 'Hero Subtitle', 'bibledoc-modern' ), 'section' => 'bibledoc_hero', 'type' => 'text' ) );
 
-    // Images - Added Defaults here
+    // Images
     $wp_customize->add_setting( 'hero_bg_image', array( 
-        'default' => 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2000&auto=format&fit=crop', // Default Dark Bible BG
+        'default' => 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2000&auto=format&fit=crop', 
         'sanitize_callback' => 'esc_url_raw' 
     ) );
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_bg_image', array(
@@ -195,7 +196,7 @@ function bibledoc_customize_register( $wp_customize ) {
     ) ) );
 
     $wp_customize->add_setting( 'hero_image', array( 
-        'default' => 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png', // Default Person Placeholder
+        'default' => 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png', 
         'sanitize_callback' => 'esc_url_raw' 
     ) );
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_image', array(
@@ -210,7 +211,6 @@ function bibledoc_customize_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'bibledoc_customize_register' );
 
-// Add defer to script
 function bibledoc_script_loader_tag( $tag, $handle ) {
     if ( 'bibledoc-script' === $handle ) return str_replace( ' src', ' defer src', $tag );
     return $tag;
