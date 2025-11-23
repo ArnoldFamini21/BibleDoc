@@ -24,7 +24,7 @@ body {
 
 a { text-decoration: none; color: inherit; }
 
-/* NAVIGATION */
+/* --- NAVIGATION --- */
 nav.main-navigation {
     position: absolute;
     top: 0; left: 0; width: 100%;
@@ -37,11 +37,12 @@ nav.main-navigation {
     display: flex; justify-content: space-between; align-items: center;
 }
 
-.site-title { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; }
+.site-title { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; z-index: 1001; }
 .site-title a { color: #fff; }
 
-.nav-menu-wrapper { display: flex; align-items: center; gap: 2.5rem; }
+.nav-menu-wrapper { display: flex; align-items: center; gap: 2rem; }
 
+/* Desktop Menu */
 .primary-menu { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
 .primary-menu li { position: relative; }
 .primary-menu a { color: rgba(255,255,255,0.9); font-weight: 400; }
@@ -52,56 +53,120 @@ nav.main-navigation {
     display: inline-block; padding: 3px; margin-left: 8px; transform: rotate(45deg) translateY(-2px);
 }
 
-.primary-menu ul.sub-menu {
-    display: none; position: absolute; top: 100%; left: -1rem;
-    background: #1f2937; min-width: 220px; padding: 1rem 0;
-    border-radius: 4px; z-index: 999; list-style: none;
-}
-.primary-menu li:hover > ul.sub-menu { display: block; }
-.primary-menu ul.sub-menu a { display: block; padding: 0.5rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-
 .support-btn {
     background: #dc2626; color: #fff !important; padding: 0.7rem 2rem;
     font-weight: 500; border-radius: 2px;
 }
 .support-btn:hover { background: #b91c1c; }
 
-/* CONTENT */
+/* Header Actions (Search & Hamburger) */
+.header-actions { display: flex; align-items: center; gap: 1.5rem; }
+
+.header-search-toggle, .mobile-menu-toggle {
+    background: none; border: none; cursor: pointer; font-size: 1.5rem; color: #fff; padding: 0; display: flex; align-items: center;
+}
+
+/* Mobile Menu Toggle (Default hidden on desktop) */
+.mobile-menu-toggle { display: none; font-size: 1.8rem; }
+
+/* Hidden Search Bar */
+.header-search-bar {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100px;
+    background: #fff; z-index: 2000;
+    display: flex; align-items: center; justify-content: center;
+    transform: translateY(-100%); transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.header-search-bar.active { transform: translateY(0); }
+
+.search-bar-container { width: 100%; max-width: 800px; padding: 0 2rem; position: relative; display: flex; gap: 1rem; }
+.header-search-bar input {
+    width: 100%; padding: 1rem; border: 2px solid #eee; border-radius: 4px; font-size: 1.2rem;
+}
+.header-search-bar .search-submit {
+    background: var(--primary); color: #fff; border: none; padding: 0 2rem; border-radius: 4px; cursor: pointer;
+}
+.header-search-bar .search-close {
+    background: none; border: none; font-size: 2rem; cursor: pointer; color: #999; margin-left: 1rem;
+}
+
+/* --- HERO SECTION --- */
+.hero-wrapper {
+    position: relative;
+    background-color: #1a1d21;
+    background-size: 100% auto;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    height: 550px; 
+    width: 100%;
+    overflow: hidden;
+    color: #fff;
+}
+
+.hero-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, rgba(15,20,25,0.85) 0%, rgba(15,20,25,0.75) 40%, rgba(15,20,25,0.3) 100%);
+    z-index: 1;
+}
+
+.hero-grid {
+    max-width: 1200px; height: 100%; margin: 0 auto; padding: 0 2rem;
+    position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: stretch;
+}
+
+.hero-col-text { flex: 1; align-self: center; padding-bottom: 50px; padding-right: 2rem; }
+.hero-title { font-size: 4.2rem; margin-bottom: 1rem; }
+.hero-description { font-size: 1.6rem; margin-bottom: 3.5rem; }
+
+.hero-col-image {
+    width: 45%; display: flex; align-items: flex-end; justify-content: flex-end;
+}
+.hero-col-image img {
+    width: auto; height: 500px; display: block; vertical-align: bottom;
+}
+
+/* --- CONTENT AREA --- */
 .content-section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
 .section-title-red { color: #991b1b; font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 2rem; }
-
 .posts-list-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem 4rem; }
 .list-item { border-bottom: 1px solid #e5e7eb; padding-bottom: 1.2rem; margin-bottom: 0.5rem; }
 .list-title { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 400; color: #1f2937; }
 .list-title a:hover { color: #dc2626; }
 .list-meta { font-size: 0.8rem; color: #6b7280; text-transform: uppercase; font-weight: 600; }
-
 .site-footer { background: #111827; color: #9ca3af; padding: 4rem 2rem; text-align: center; margin-top: 4rem; }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
+    /* Force Full Screen Background */
     .hero-wrapper { 
-        height: auto !important; 
-        min-height: 60vh; /* Balanced height for mobile */
-        padding-bottom: 0;
+        height: 100vh !important; /* Full viewport height */
+        background-size: cover !important; /* Cover entire area */
+        background-position: center center !important;
     }
     
-    .hero-grid { 
-        flex-direction: column; 
-        padding-top: 80px; 
+    .hero-grid {
+        flex-direction: column;
         justify-content: center;
+        padding-top: 60px;
     }
     
-    .hero-col-text { 
-        text-align: center; 
-        padding-right: 0 !important; 
-        padding-bottom: 0 !important; /* Remove bottom padding */
-        margin-bottom: 2rem; 
+    .hero-col-text { text-align: center; padding-right: 0 !important; flex: 0 0 auto; }
+    .hero-title { font-size: 2.8rem; }
+    .hero-description { font-size: 1.2rem; }
+    
+    .hero-col-image {
+        width: 100%; justify-content: center; margin-top: 2rem;
     }
+    .hero-col-image img { height: 300px; }
     
-    /* HIDE IMAGE ON MOBILE */
-    .hero-col-image { display: none !important; }
+    /* Menu Updates */
+    .primary-menu, .desktop-only { display: none; }
+    .mobile-menu-toggle { display: block; }
     
-    .hero-search form { margin: 0 auto; }
-    .nav-menu-wrapper { display: none; } 
+    /* Mobile Menu Drawer (Hidden by default) */
+    .primary-menu.active {
+        display: flex; flex-direction: column;
+        position: fixed; top: 70px; left: 0; width: 100%; background: #1f2937;
+        padding: 2rem; gap: 1.5rem;
+    }
 }
