@@ -56,10 +56,10 @@ add_action( 'widgets_init', 'bibledoc_widgets_init' );
 
 /**
  * Enqueue scripts and styles
- * VERSION 1.0.16
+ * VERSION 1.0.17 - FORCE RELOAD
  */
 function bibledoc_scripts() {
-    wp_enqueue_style( 'bibledoc-style', get_stylesheet_uri(), array(), '1.0.16' ); 
+    wp_enqueue_style( 'bibledoc-style', get_stylesheet_uri(), array(), '1.0.17' ); 
     wp_enqueue_script( 'bibledoc-script', get_template_directory_uri() . '/js/script.js', array(), '1.0.0', true );
     wp_localize_script( 'bibledoc-script', 'bibledocAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ), 'nonce' => wp_create_nonce( 'bibledoc-nonce' ) ) );
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -147,7 +147,8 @@ function bibledoc_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'hero_subtitle', array( 'default' => 'I help friends to understand their Bibles!', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'hero_subtitle', array( 'label' => __( 'Hero Subtitle', 'bibledoc-modern' ), 'section' => 'bibledoc_hero', 'type' => 'text' ) );
 
-    $wp_customize->add_setting( 'hero_bg_image', array( 'default' => 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2000&auto=format&fit=crop', 'sanitize_callback' => 'esc_url_raw' ) );
+    // CHANGED: Default URL removed 'fit=crop' to allow full image display
+    $wp_customize->add_setting( 'hero_bg_image', array( 'default' => 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2500&auto=format', 'sanitize_callback' => 'esc_url_raw' ) );
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_bg_image', array( 'label' => __( 'Background Image (Dark)', 'bibledoc-modern' ), 'section' => 'bibledoc_hero' ) ) );
 
     $wp_customize->add_setting( 'hero_image', array( 'default' => 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png', 'sanitize_callback' => 'esc_url_raw' ) );
