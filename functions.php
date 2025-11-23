@@ -394,3 +394,10 @@ function bibledoc_script_loader_tag( $tag, $handle ) {
     return $tag;
 }
 add_filter( 'script_loader_tag', 'bibledoc_script_loader_tag', 10, 2 );
+/**
+ * Enqueue Google Fonts
+ */
+function bibledoc_fonts() {
+    wp_enqueue_style( 'bibledoc-google-fonts', 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap', array(), null );
+}
+add_action( 'wp_enqueue_scripts', 'bibledoc_fonts' );
