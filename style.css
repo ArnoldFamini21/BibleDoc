@@ -3,13 +3,13 @@ Theme Name: Bibledoc Modern
 Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
 Description: A faithful recreation of the classic Bibledoc design with modern code.
-Version: 1.0.3
+Version: 1.0.4
 */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-    --primary: #dc2626; /* Red from screenshot */
+    --primary: #dc2626;
     --dark: #111827;
     --text: #374151;
     --text-light: #6b7280;
@@ -64,7 +64,7 @@ nav.main-navigation {
 
 .primary-menu {
     display: flex;
-    gap: 2.5rem; /* Increased gap for cleaner look */
+    gap: 2.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -77,7 +77,7 @@ nav.main-navigation {
 
 .primary-menu a {
     color: rgba(255, 255, 255, 0.9);
-    font-family: 'Roboto', sans-serif; /* Match screenshot font */
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1.05rem;
     transition: color 0.2s;
@@ -88,7 +88,7 @@ nav.main-navigation {
 
 .primary-menu a:hover { color: var(--white); }
 
-/* Dropdown Arrow for "Topics" style items */
+/* Dropdown Arrow */
 .primary-menu .menu-item-has-children > a::after {
     content: '';
     border: solid white;
@@ -103,7 +103,7 @@ nav.main-navigation {
 /* Support Button */
 .support-btn {
     background: #dc2626;
-    color: white !important; /* Force white text */
+    color: white !important;
     padding: 0.7rem 2rem;
     font-weight: 500;
     font-size: 1rem;
@@ -121,16 +121,15 @@ nav.main-navigation {
     background-color: var(--bg-dark);
     background-size: cover;
     background-position: center;
-    min-height: 600px; /* Increased height slightly */
+    min-height: 600px;
     display: flex;
     align-items: center;
-    overflow: hidden;
+    overflow: hidden; /* Ensures the pushed-down image gets cut cleanly */
 }
 
 .hero-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    /* Darker gradient on left to make text readable */
     background: linear-gradient(90deg, rgba(15,20,25,0.95) 0%, rgba(15,20,25,0.8) 40%, rgba(15,20,25,0.4) 100%);
     z-index: 1;
 }
@@ -142,16 +141,16 @@ nav.main-navigation {
     padding: 0 2rem;
     position: relative;
     z-index: 2;
-    height: 600px; /* Match wrapper min-height */
+    height: 600px;
     display: flex;
-    align-items: center; /* Vertically center the text */
+    align-items: center;
 }
 
 .hero-content {
     max-width: 600px;
     position: relative;
     z-index: 3;
-    margin-top: -50px; /* Slight offset to account for nav */
+    margin-top: -50px;
 }
 
 .hero-title {
@@ -200,24 +199,26 @@ nav.main-navigation {
     border-color: var(--white);
 }
 
-/* Person Image - FIXED POSITIONING */
+/* Person Image - FIXED (Grounded) */
 .hero-person {
     position: absolute;
-    bottom: 0;
+    bottom: -50px; /* Pushes image down to look grounded */
     right: 0;
     z-index: 2;
-    width: 45%; /* Restrict width to prevent overlap */
-    max-width: 500px;
-    pointer-events: none; /* Allows clicking through transparent parts if needed */
+    width: 50%;
+    max-width: 600px;
+    pointer-events: none;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .hero-person img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    max-height: 580px; /* Made larger */
     display: block;
-    /* Ensure image sits on the bottom edge */
-    vertical-align: bottom; 
-    filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5)); /* Shadow adds depth */
+    /* Shadow behind the person, not under */
+    filter: drop-shadow(-10px 0 20px rgba(0,0,0,0.5)); 
 }
 
 /* --- CONTENT AREA --- */
@@ -298,11 +299,12 @@ nav.main-navigation {
         max-width: 350px;
         margin: 3rem auto 0;
         right: auto;
-        bottom: auto;
+        bottom: -20px; /* Less push on mobile */
+        justify-content: center;
     }
     
     .hero-search .search-form { margin: 0 auto; }
-    .nav-menu-wrapper { display: none; } /* Hide menu on tablet/mobile for now or implement hamburger */
+    .nav-menu-wrapper { display: none; } 
 }
 
 @media (max-width: 768px) {
