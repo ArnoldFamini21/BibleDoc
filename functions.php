@@ -109,6 +109,14 @@ function bibledoc_scripts() {
 add_action( 'wp_enqueue_scripts', 'bibledoc_scripts' );
 
 /**
+ * Enqueue Google Fonts
+ */
+function bibledoc_fonts() {
+    wp_enqueue_style( 'bibledoc-google-fonts', 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap', array(), null );
+}
+add_action( 'wp_enqueue_scripts', 'bibledoc_fonts' );
+
+/**
  * Calculate reading time
  */
 function bibledoc_reading_time() {
@@ -360,6 +368,32 @@ function bibledoc_customize_register( $wp_customize ) {
         'type'    => 'text',
     ) );
 
+    // Hero Badge Text
+    $wp_customize->add_setting( 'hero_badge_text', array(
+        'default'           => 'Biblical Resources',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'hero_badge_text', array(
+        'label'   => __( 'Hero Badge Text', 'bibledoc-modern' ),
+        'section' => 'bibledoc_hero',
+        'type'    => 'text',
+        'priority' => 10,
+    ) );
+
+    // Popular Tags (Simple text input for now)
+    $wp_customize->add_setting( 'hero_popular_tags', array(
+        'default'           => 'Prophecy, Doctrine, Lifestyle',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+
+    $wp_customize->add_control( 'hero_popular_tags', array(
+        'label'   => __( 'Popular Tags (comma separated)', 'bibledoc-modern' ),
+        'section' => 'bibledoc_hero',
+        'type'    => 'text',
+        'description' => 'Enter tags separated by commas',
+    ) );
+
     // Hero image
     $wp_customize->add_setting( 'hero_image', array(
         'sanitize_callback' => 'esc_url_raw',
@@ -394,35 +428,3 @@ function bibledoc_script_loader_tag( $tag, $handle ) {
     return $tag;
 }
 add_filter( 'script_loader_tag', 'bibledoc_script_loader_tag', 10, 2 );
-/**
- * Enqueue Google Fonts
- */
-function bibledoc_fonts() {
-    wp_enqueue_style( 'bibledoc-google-fonts', 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap', array(), null );
-}
-add_action( 'wp_enqueue_scripts', 'bibledoc_fonts' );
-// Hero Badge Text
-    $wp_customize->add_setting( 'hero_badge_text', array(
-        'default'           => 'Biblical Resources',
-        'sanitize_callback' => 'sanitize_text_field',
-    ) );
-
-    $wp_customize->add_control( 'hero_badge_text', array(
-        'label'   => __( 'Hero Badge Text', 'bibledoc-modern' ),
-        'section' => 'bibledoc_hero',
-        'type'    => 'text',
-        'priority' => 10,
-    ) );
-
-    // Popular Tags (Simple text input for now)
-    $wp_customize->add_setting( 'hero_popular_tags', array(
-        'default'           => 'Prophecy, Doctrine, Lifestyle',
-        'sanitize_callback' => 'sanitize_text_field',
-    ) );
-
-    $wp_customize->add_control( 'hero_popular_tags', array(
-        'label'   => __( 'Popular Tags (comma separated)', 'bibledoc-modern' ),
-        'section' => 'bibledoc_hero',
-        'type'    => 'text',
-        'description' => 'Enter tags separated by commas',
-    ) );
