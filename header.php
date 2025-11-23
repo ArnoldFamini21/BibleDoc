@@ -12,6 +12,16 @@
 
 <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'bibledoc-modern' ); ?></a>
 
+<div id="header-search-bar" class="header-search-bar">
+    <div class="search-bar-container">
+        <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+            <input type="search" class="search-field" placeholder="Search website..." value="" name="s" />
+            <button type="submit" class="search-submit">Search</button>
+        </form>
+        <button class="search-close" aria-label="Close search">×</button>
+    </div>
+</div>
+
 <nav class="main-navigation" role="navigation">
     <div class="nav-container">
         <div class="site-branding">
@@ -31,9 +41,20 @@
                 'fallback_cb'    => false,
             ) );
             ?>
-            <a href="<?php echo esc_url( get_theme_mod( 'support_url', '#support' ) ); ?>" class="support-btn">
-                <?php esc_html_e( 'Support', 'bibledoc-modern' ); ?>
-            </a>
+            
+            <div class="header-actions">
+                <button class="header-search-toggle" aria-label="Open search">
+                    <span class="search-icon">🔍</span>
+                </button>
+                
+                <a href="<?php echo esc_url( get_theme_mod( 'support_url', '#support' ) ); ?>" class="support-btn desktop-only">
+                    <?php esc_html_e( 'Support', 'bibledoc-modern' ); ?>
+                </a>
+
+                <button class="mobile-menu-toggle" aria-label="Open menu">
+                    <span class="menu-icon">☰</span>
+                </button>
+            </div>
         </div>
     </div>
 </nav>
@@ -43,20 +64,13 @@
     $bg_image = get_theme_mod('hero_bg_image', 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2000&auto=format');
     ?>
     
-    <div class="hero-wrapper" style="background-image: url('<?php echo esc_url($bg_image); ?>'); background-size: 100% auto; background-position: center 30%; background-repeat: no-repeat; background-color: #1a1d21;">
-        <div class="hero-overlay" style="background: linear-gradient(90deg, rgba(10,10,20,0.9) 0%, rgba(10,10,20,0.7) 50%, rgba(10,10,20,0.3) 100%);"></div>
+    <div class="hero-wrapper" style="background-image: url('<?php echo esc_url($bg_image); ?>');">
+        <div class="hero-overlay"></div>
         
         <div class="hero-grid">
-            
             <div class="hero-col-text">
                 <h1 class="hero-title" style="font-family: 'Outfit', sans-serif; color: #ffffff !important; line-height: 1.1; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5);"><?php echo esc_html( get_theme_mod( 'hero_title', 'Looking for answers?' ) ); ?></h1>
                 <p class="hero-description" style="font-family: 'Georgia', serif; font-style: italic; color: #eeeeee !important; font-weight: 300;"><?php echo esc_html( get_theme_mod( 'hero_subtitle', 'I help friends to understand their Bibles!' ) ); ?></p>
-                
-                <div class="hero-search">
-                    <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>" style="position: relative;">
-                        <input type="search" class="search-field" placeholder="Search entire website..." value="<?php echo get_search_query(); ?>" name="s" style="width: 100%; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 1rem 1.5rem; color: #fff; border-radius: 4px;" />
-                    </form>
-                </div>
             </div>
 
             <div class="hero-col-image">
@@ -66,7 +80,6 @@
                     <img src="<?php echo esc_url( $hero_person ); ?>" alt="Person" style="filter: drop-shadow(-10px 0 20px rgba(0,0,0,0.5));">
                 <?php endif; ?>
             </div>
-
         </div>
     </div>
 <?php else : ?>
