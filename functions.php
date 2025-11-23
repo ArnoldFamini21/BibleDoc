@@ -3,6 +3,7 @@
  * Bibledoc Modern Theme Functions
  *
  * @package Bibledoc_Modern
+ * @version 1.0.23
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -56,12 +57,32 @@ add_action( 'widgets_init', 'bibledoc_widgets_init' );
 
 /**
  * Enqueue scripts and styles
- * VERSION 1.0.22 - Resize Man Image
+ * VERSION 1.0.23 - Mobile Optimization Update
  */
 function bibledoc_scripts() {
-    wp_enqueue_style( 'bibledoc-style', get_stylesheet_uri(), array(), '1.0.22' ); 
-    wp_enqueue_script( 'bibledoc-script', get_template_directory_uri() . '/js/script.js', array(), '1.0.0', true );
-    wp_localize_script( 'bibledoc-script', 'bibledocAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ), 'nonce' => wp_create_nonce( 'bibledoc-nonce' ) ) );
+    // Main stylesheet with updated version
+    wp_enqueue_style( 'bibledoc-style', get_stylesheet_uri(), array(), '1.0.23' ); 
+    
+    // Main JavaScript with updated version
+    wp_enqueue_script( 
+        'bibledoc-script', 
+        get_template_directory_uri() . '/js/script.js', 
+        array(), 
+        '1.0.23', 
+        true 
+    );
+    
+    // Localize script for AJAX
+    wp_localize_script( 
+        'bibledoc-script', 
+        'bibledocAjax', 
+        array( 
+            'ajaxurl' => admin_url( 'admin-ajax.php' ), 
+            'nonce' => wp_create_nonce( 'bibledoc-nonce' ) 
+        ) 
+    );
+    
+    // Comments
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
@@ -69,7 +90,12 @@ function bibledoc_scripts() {
 add_action( 'wp_enqueue_scripts', 'bibledoc_scripts' );
 
 function bibledoc_fonts() {
-    wp_enqueue_style( 'bibledoc-google-fonts', 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap', array(), null );
+    wp_enqueue_style( 
+        'bibledoc-google-fonts', 
+        'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap', 
+        array(), 
+        null 
+    );
 }
 add_action( 'wp_enqueue_scripts', 'bibledoc_fonts' );
 
@@ -118,8 +144,8 @@ function bibledoc_social_share() {
     $post_url = urlencode( get_permalink() );
     $post_title = urlencode( get_the_title() );
     echo '<div class="social-share">';
-    echo '<a href="https://twitter.com/intent/tweet?text=' . $post_title . '&url=' . $post_url . '" target="_blank">𝕏</a>';
-    echo '<a href="https://www.facebook.com/sharer/sharer.php?u=' . $post_url . '" target="_blank">f</a>';
+    echo '<a href="https://twitter.com/intent/tweet?text=' . $post_title . '&url=' . $post_url . '" target="_blank" rel="noopener">𝕏</a>';
+    echo '<a href="https://www.facebook.com/sharer/sharer.php?u=' . $post_url . '" target="_blank" rel="noopener">f</a>';
     echo '</div>';
 }
 
@@ -130,8 +156,12 @@ function bibledoc_breadcrumb() {
     if ( is_category() || is_single() ) {
         echo '<span class="separator">/</span>';
         $categories = get_the_category();
-        if ( ! empty( $categories ) ) echo '<a href="' . esc_url( get_category_link( $categories[0]->term_id ) ) . '">' . esc_html( $categories[0]->name ) . '</a>';
-        if ( is_single() ) echo '<span class="separator">/</span><span>' . get_the_title() . '</span>';
+        if ( ! empty( $categories ) ) {
+            echo '<a href="' . esc_url( get_category_link( $categories[0]->term_id ) ) . '">' . esc_html( $categories[0]->name ) . '</a>';
+        }
+        if ( is_single() ) {
+            echo '<span class="separator">/</span><span>' . get_the_title() . '</span>';
+        }
     } elseif ( is_page() ) {
         echo '<span class="separator">/</span><span>' . get_the_title() . '</span>';
     }
@@ -139,27 +169,87 @@ function bibledoc_breadcrumb() {
 }
 
 function bibledoc_customize_register( $wp_customize ) {
-    $wp_customize->add_section( 'bibledoc_hero', array( 'title' => __( 'Hero Section', 'bibledoc-modern' ), 'priority' => 30 ) );
+    $wp_customize->add_section( 'bibledoc_hero', array( 
+        'title' => __( 'Hero Section', 'bibledoc-modern' ), 
+        'priority' => 30 
+    ) );
     
-    $wp_customize->add_setting( 'hero_title', array( 'default' => 'Looking for answers?', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'hero_title', array( 'label' => __( 'Hero Title', 'bibledoc-modern' ), 'section' => 'bibledoc_hero', 'type' => 'text' ) );
+    $wp_customize->add_setting( 'hero_title', array( 
+        'default' => 'Looking for answers?', 
+        'sanitize_callback' => 'sanitize_text_field' 
+    ) );
+    $wp_customize->add_control( 'hero_title', array( 
+        'label' => __( 'Hero Title', 'bibledoc-modern' ), 
+        'section' => 'bibledoc_hero', 
+        'type' => 'text' 
+    ) );
 
-    $wp_customize->add_setting( 'hero_subtitle', array( 'default' => 'I help friends to understand their Bibles!', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'hero_subtitle', array( 'label' => __( 'Hero Subtitle', 'bibledoc-modern' ), 'section' => 'bibledoc_hero', 'type' => 'text' ) );
+    $wp_customize->add_setting( 'hero_subtitle', array( 
+        'default' => 'I help friends to understand their Bibles!', 
+        'sanitize_callback' => 'sanitize_text_field' 
+    ) );
+    $wp_customize->add_control( 'hero_subtitle', array( 
+        'label' => __( 'Hero Subtitle', 'bibledoc-modern' ), 
+        'section' => 'bibledoc_hero', 
+        'type' => 'text' 
+    ) );
 
-    $wp_customize->add_setting( 'hero_bg_image', array( 'default' => 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2000&auto=format', 'sanitize_callback' => 'esc_url_raw' ) );
-    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_bg_image', array( 'label' => __( 'Background Image (Dark)', 'bibledoc-modern' ), 'section' => 'bibledoc_hero' ) ) );
+    $wp_customize->add_setting( 'hero_bg_image', array( 
+        'default' => 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2000&auto=format', 
+        'sanitize_callback' => 'esc_url_raw' 
+    ) );
+    $wp_customize->add_control( new WP_Customize_Image_Control( 
+        $wp_customize, 
+        'hero_bg_image', 
+        array( 
+            'label' => __( 'Background Image (Dark)', 'bibledoc-modern' ), 
+            'section' => 'bibledoc_hero' 
+        ) 
+    ) );
 
-    $wp_customize->add_setting( 'hero_image', array( 'default' => 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png', 'sanitize_callback' => 'esc_url_raw' ) );
-    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_image', array( 'label' => __( 'Person Image (Right Side)', 'bibledoc-modern' ), 'section' => 'bibledoc_hero' ) ) );
+    $wp_customize->add_setting( 'hero_image', array( 
+        'default' => 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png', 
+        'sanitize_callback' => 'esc_url_raw' 
+    ) );
+    $wp_customize->add_control( new WP_Customize_Image_Control( 
+        $wp_customize, 
+        'hero_image', 
+        array( 
+            'label' => __( 'Person Image (Right Side)', 'bibledoc-modern' ), 
+            'section' => 'bibledoc_hero' 
+        ) 
+    ) );
 
-    $wp_customize->add_setting( 'support_url', array( 'default' => '#support', 'sanitize_callback' => 'esc_url_raw' ) );
-    $wp_customize->add_control( 'support_url', array( 'label' => __( 'Support Button URL', 'bibledoc-modern' ), 'section' => 'bibledoc_hero', 'type' => 'url' ) );
+    $wp_customize->add_setting( 'support_url', array( 
+        'default' => '#support', 
+        'sanitize_callback' => 'esc_url_raw' 
+    ) );
+    $wp_customize->add_control( 'support_url', array( 
+        'label' => __( 'Support Button URL', 'bibledoc-modern' ), 
+        'section' => 'bibledoc_hero', 
+        'type' => 'url' 
+    ) );
 }
 add_action( 'customize_register', 'bibledoc_customize_register' );
 
+/**
+ * Defer JavaScript loading for better performance
+ */
 function bibledoc_script_loader_tag( $tag, $handle ) {
-    if ( 'bibledoc-script' === $handle ) return str_replace( ' src', ' defer src', $tag );
+    if ( 'bibledoc-script' === $handle ) {
+        return str_replace( ' src', ' defer src', $tag );
+    }
     return $tag;
 }
 add_filter( 'script_loader_tag', 'bibledoc_script_loader_tag', 10, 2 );
+
+/**
+ * Add mobile device body class for easier styling (optional)
+ */
+function bibledoc_mobile_body_class( $classes ) {
+    if ( wp_is_mobile() ) {
+        $classes[] = 'mobile-device';
+    }
+    return $classes;
+}
+add_filter( 'body_class', 'bibledoc_mobile_body_class' );
