@@ -318,32 +318,8 @@
             });
         }
     }
-
-    // Initialize all functions when DOM is ready
-    function init() {
-        initMobileMenu();
-        initDarkMode();
-        initBackToTop();
-        initReadingProgress();
-        initFilterSort();
-        initViewToggle();
-        initLazyLoad();
-        initSmoothScroll();
-        initStickyHeader();
-        initSocialShare();
-        initSearchEnhancement();
-        initSkipLink();
-    }
-
-    // Run when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
-    }
-
-})();
-// Hero Mouse Parallax Effect
+    
+    // Hero Mouse Parallax Effect
     function initHeroParallax() {
         const heroSection = document.querySelector('.hero-section');
         const heroImage = document.querySelector('.hero-img-element');
@@ -378,4 +354,28 @@
         });
     }
 
-    // Add initHeroParallax() inside your main init() function
+    // Initialize all functions when DOM is ready
+    function init() {
+        initMobileMenu();
+        initDarkMode();
+        initBackToTop();
+        initReadingProgress();
+        initFilterSort();
+        initViewToggle();
+        initLazyLoad();
+        initSmoothScroll();
+        initStickyHeader();
+        initSocialShare();
+        initSearchEnhancement();
+        initSkipLink();
+        initHeroParallax();
+    }
+
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+})();
