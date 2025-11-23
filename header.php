@@ -31,7 +31,6 @@
                 'fallback_cb'    => false,
             ) );
             ?>
-
             <a href="<?php echo esc_url( get_theme_mod( 'support_url', '#support' ) ); ?>" class="support-btn">
                 <?php esc_html_e( 'Support', 'bibledoc-modern' ); ?>
             </a>
@@ -58,15 +57,15 @@
                     </form>
                 </div>
             </div>
-
-            <div class="hero-person">
-                <?php
-                $hero_person = get_theme_mod( 'hero_image', 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png' );
-                if ( $hero_person ) : ?>
-                    <img src="<?php echo esc_url( $hero_person ); ?>" alt="Person">
-                <?php endif; ?>
-            </div>
         </section>
+
+        <div class="hero-person">
+            <?php
+            $hero_person = get_theme_mod( 'hero_image', 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png' );
+            if ( $hero_person ) : ?>
+                <img src="<?php echo esc_url( $hero_person ); ?>" alt="Person">
+            <?php endif; ?>
+        </div>
     </div>
 <?php else : ?>
     <?php bibledoc_breadcrumb(); ?>
