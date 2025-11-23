@@ -77,7 +77,7 @@ add_action( 'widgets_init', 'bibledoc_widgets_init' );
  * Enqueue scripts and styles
  */
 function bibledoc_scripts() {
-    wp_enqueue_style( 'bibledoc-style', get_stylesheet_uri(), array(), '1.0.1' );
+    wp_enqueue_style( 'bibledoc-style', get_stylesheet_uri(), array(), '1.0.2' );
     wp_enqueue_script( 'bibledoc-script', get_template_directory_uri() . '/js/script.js', array(), '1.0.0', true );
 
     wp_localize_script( 'bibledoc-script', 'bibledocAjax', array(
@@ -92,7 +92,7 @@ function bibledoc_scripts() {
 add_action( 'wp_enqueue_scripts', 'bibledoc_scripts' );
 
 /**
- * Enqueue Google Fonts (Outfit for headers, Roboto for body to match classic feel)
+ * Enqueue Google Fonts
  */
 function bibledoc_fonts() {
     wp_enqueue_style( 'bibledoc-google-fonts', 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap', array(), null );
@@ -183,15 +183,21 @@ function bibledoc_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'hero_subtitle', array( 'default' => 'I help friends to understand their Bibles!', 'sanitize_callback' => 'sanitize_text_field' ) );
     $wp_customize->add_control( 'hero_subtitle', array( 'label' => __( 'Hero Subtitle', 'bibledoc-modern' ), 'section' => 'bibledoc_hero', 'type' => 'text' ) );
 
-    // Images
-    $wp_customize->add_setting( 'hero_bg_image', array( 'sanitize_callback' => 'esc_url_raw' ) );
+    // Images - Added Defaults here
+    $wp_customize->add_setting( 'hero_bg_image', array( 
+        'default' => 'https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2000&auto=format&fit=crop', // Default Dark Bible BG
+        'sanitize_callback' => 'esc_url_raw' 
+    ) );
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_bg_image', array(
         'label'   => __( 'Background Image (Dark)', 'bibledoc-modern' ),
         'section' => 'bibledoc_hero',
         'description' => 'Upload a dark image (e.g., open Bible) to act as the background.',
     ) ) );
 
-    $wp_customize->add_setting( 'hero_image', array( 'sanitize_callback' => 'esc_url_raw' ) );
+    $wp_customize->add_setting( 'hero_image', array( 
+        'default' => 'https://png.pngtree.com/png-vector/20230928/ourmid/pngtree-man-in-suit-png-image_10149892.png', // Default Person Placeholder
+        'sanitize_callback' => 'esc_url_raw' 
+    ) );
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'hero_image', array(
         'label'   => __( 'Person Image (Right Side)', 'bibledoc-modern' ),
         'section' => 'bibledoc_hero',
