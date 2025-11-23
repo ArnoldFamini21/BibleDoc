@@ -3,7 +3,7 @@ Theme Name: Bibledoc Modern
 Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
 Description: A faithful recreation of the classic Bibledoc design with modern code.
-Version: 1.0.2
+Version: 1.0.3
 */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,7 +13,7 @@ Version: 1.0.2
     --dark: #111827;
     --text: #374151;
     --text-light: #6b7280;
-    --bg-dark: #1a1d21; /* Dark Header BG */
+    --bg-dark: #1a1d21;
     --white: #ffffff;
     --border: #e5e7eb;
 }
@@ -51,6 +51,7 @@ nav.main-navigation {
     font-family: 'Outfit', sans-serif;
     font-size: 1.8rem;
     font-weight: 700;
+    z-index: 101;
 }
 
 .site-title a { color: var(--white); }
@@ -63,39 +64,64 @@ nav.main-navigation {
 
 .primary-menu {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem; /* Increased gap for cleaner look */
     list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.primary-menu li {
+    position: relative;
 }
 
 .primary-menu a {
     color: rgba(255, 255, 255, 0.9);
+    font-family: 'Roboto', sans-serif; /* Match screenshot font */
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 1.05rem;
     transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .primary-menu a:hover { color: var(--white); }
 
+/* Dropdown Arrow for "Topics" style items */
+.primary-menu .menu-item-has-children > a::after {
+    content: '';
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    margin-top: -4px;
+    opacity: 0.8;
+}
+
 /* Support Button */
 .support-btn {
-    background: #dc2626; /* Red */
-    color: white;
-    padding: 0.6rem 1.8rem;
+    background: #dc2626;
+    color: white !important; /* Force white text */
+    padding: 0.7rem 2rem;
     font-weight: 500;
     font-size: 1rem;
     transition: background 0.3s;
     border-radius: 2px;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
 }
 
 .support-btn:hover { background: #b91c1c; }
 
-/* --- HERO SECTION (Replicated from Screenshot) --- */
+/* --- HERO SECTION --- */
 .hero-wrapper {
     position: relative;
     background-color: var(--bg-dark);
     background-size: cover;
     background-position: center;
-    min-height: 550px;
+    min-height: 600px; /* Increased height slightly */
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -104,7 +130,8 @@ nav.main-navigation {
 .hero-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(90deg, rgba(20,25,30,0.95) 0%, rgba(20,25,30,0.6) 100%);
+    /* Darker gradient on left to make text readable */
+    background: linear-gradient(90deg, rgba(15,20,25,0.95) 0%, rgba(15,20,25,0.8) 40%, rgba(15,20,25,0.4) 100%);
     z-index: 1;
 }
 
@@ -112,57 +139,60 @@ nav.main-navigation {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    padding: 4rem 2rem 0;
+    padding: 0 2rem;
     position: relative;
     z-index: 2;
+    height: 600px; /* Match wrapper min-height */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
+    align-items: center; /* Vertically center the text */
 }
 
 .hero-content {
     max-width: 600px;
-    padding-bottom: 4rem;
+    position: relative;
+    z-index: 3;
+    margin-top: -50px; /* Slight offset to account for nav */
 }
 
 .hero-title {
     font-family: 'Outfit', sans-serif;
-    font-size: 4rem;
+    font-size: 4.2rem;
     color: var(--white);
     line-height: 1.1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     font-weight: 500;
 }
 
 .hero-description {
     font-family: 'Georgia', serif;
     font-style: italic;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.5rem;
-    margin-bottom: 3rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.6rem;
+    margin-bottom: 3.5rem;
     font-weight: 300;
 }
 
 /* Transparent Search Bar */
 .hero-search .search-form {
-    max-width: 500px;
+    max-width: 550px;
+    position: relative;
 }
 
 .hero-search .search-field {
     width: 100%;
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 1rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 1.1rem 1.5rem;
     color: var(--white);
     font-size: 1.1rem;
     border-radius: 3px;
     outline: none;
     transition: all 0.3s;
+    font-weight: 300;
 }
 
 .hero-search .search-field::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .hero-search .search-field:focus {
@@ -170,66 +200,71 @@ nav.main-navigation {
     border-color: var(--white);
 }
 
-/* Person Image */
+/* Person Image - FIXED POSITIONING */
 .hero-person {
-    position: relative;
-    bottom: -4rem; /* Push slightly down to mimic cutout alignment */
+    position: absolute;
+    bottom: 0;
     right: 0;
-    display: flex;
-    align-items: flex-end;
+    z-index: 2;
+    width: 45%; /* Restrict width to prevent overlap */
+    max-width: 500px;
+    pointer-events: none; /* Allows clicking through transparent parts if needed */
 }
 
 .hero-person img {
-    max-height: 500px;
-    width: auto;
+    width: 100%;
+    height: auto;
     display: block;
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+    /* Ensure image sits on the bottom edge */
+    vertical-align: bottom; 
+    filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5)); /* Shadow adds depth */
 }
 
-/* --- CONTENT AREA (Replicated Lists) --- */
+/* --- CONTENT AREA --- */
 .content-section {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 2rem;
+    padding: 5rem 2rem;
 }
 
 .section-title-red {
-    color: #991b1b; /* Dark Red */
+    color: #991b1b;
     font-family: 'Outfit', sans-serif;
-    font-size: 1.75rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    letter-spacing: -0.5px;
 }
 
 .posts-list-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem 4rem; /* Wide gaps like screenshot */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem 4rem;
 }
 
 .list-item {
     border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 1rem;
+    padding-bottom: 1.2rem;
     margin-bottom: 0.5rem;
 }
 
 .list-title {
     font-family: 'Outfit', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 400;
     color: #1f2937;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
     line-height: 1.4;
 }
 
 .list-title a:hover { color: #dc2626; }
 
 .list-meta {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: #6b7280;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 /* --- FOOTER --- */
@@ -241,33 +276,36 @@ nav.main-navigation {
     margin-top: 4rem;
 }
 
-.footer-widgets {
-    color: #d1d5db;
-    margin-bottom: 2rem;
-}
-
-.site-footer a { color: #fff; }
-
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
     .hero-section {
         flex-direction: column;
         text-align: center;
-        padding-top: 6rem;
+        padding-top: 8rem;
+        height: auto;
+        min-height: 700px;
+        display: block;
     }
     
+    .hero-content {
+        margin: 0 auto;
+        margin-top: 0;
+    }
+
     .hero-person {
-        bottom: 0;
-        margin-top: 2rem;
-        justify-content: center;
+        position: relative;
+        width: 70%;
+        max-width: 350px;
+        margin: 3rem auto 0;
+        right: auto;
+        bottom: auto;
     }
     
-    .hero-person img { max-height: 300px; }
     .hero-search .search-form { margin: 0 auto; }
-    .nav-container { padding: 0 1rem; }
+    .nav-menu-wrapper { display: none; } /* Hide menu on tablet/mobile for now or implement hamburger */
 }
 
 @media (max-width: 768px) {
-    .primary-menu { display: none; } 
-    .hero-title { font-size: 2.5rem; }
+    .hero-title { font-size: 3rem; }
+    .hero-description { font-size: 1.3rem; }
 }
