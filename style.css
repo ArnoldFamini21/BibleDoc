@@ -3,7 +3,7 @@ Theme Name: Bibledoc Modern
 Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
 Description: A faithful recreation of the classic Bibledoc design with modern code.
-Version: 1.0.10
+Version: 1.0.11
 */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,7 +33,7 @@ nav.main-navigation {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* High z-index so menu floats over everything */
+    z-index: 1000;
     padding: 1.5rem 0;
     background: transparent;
 }
@@ -59,10 +59,9 @@ nav.main-navigation {
 .nav-menu-wrapper {
     display: flex;
     align-items: center;
-    gap: 2.5rem; /* Space between menu and button */
+    gap: 2.5rem;
 }
 
-/* Menu List Styling */
 .primary-menu {
     display: flex;
     gap: 2rem;
@@ -72,11 +71,8 @@ nav.main-navigation {
     align-items: center;
 }
 
-.primary-menu li {
-    position: relative; /* Needed for dropdown positioning */
-}
+.primary-menu li { position: relative; }
 
-/* Top Level Links */
 .primary-menu > li > a {
     color: rgba(255, 255, 255, 0.9);
     font-family: 'Roboto', sans-serif;
@@ -90,9 +86,7 @@ nav.main-navigation {
 
 .primary-menu > li > a:hover { color: var(--white); }
 
-/* --- DROPDOWN STYLES --- */
-
-/* The Chevron Arrow */
+/* Dropdown */
 .primary-menu .menu-item-has-children > a::after {
     content: '';
     border: solid rgba(255,255,255,0.7);
@@ -109,13 +103,13 @@ nav.main-navigation {
     transform: rotate(45deg) translateY(0);
 }
 
-/* The Dropdown Menu (Sub-menu) */
+/* Sub Menu */
 .primary-menu ul.sub-menu {
-    display: none; /* Hidden by default */
+    display: none;
     position: absolute;
     top: 100%;
     left: -1rem;
-    background: #1f2937; /* Dark background like header */
+    background: #1f2937;
     min-width: 220px;
     padding: 1rem 0;
     border-radius: 4px;
@@ -125,15 +119,7 @@ nav.main-navigation {
     animation: fadeIn 0.2s ease;
 }
 
-/* Show Dropdown on Hover */
-.primary-menu li:hover > ul.sub-menu {
-    display: block;
-}
-
-/* Dropdown Items */
-.primary-menu ul.sub-menu li {
-    display: block;
-}
+.primary-menu li:hover > ul.sub-menu { display: block; }
 
 .primary-menu ul.sub-menu a {
     display: block;
@@ -148,13 +134,11 @@ nav.main-navigation {
     color: var(--white);
 }
 
-/* --- ANIMATIONS --- */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Support Button */
 .support-btn {
     background: #dc2626;
     color: white !important;
@@ -169,21 +153,23 @@ nav.main-navigation {
 
 .support-btn:hover { background: #b91c1c; }
 
-/* --- HERO SECTION (Locked Height) --- */
+/* --- HERO SECTION --- */
 .hero-wrapper {
     position: relative;
     background-color: var(--bg-dark);
     background-size: cover;
     background-position: center;
-    height: 550px; 
+    height: 600px; 
     width: 100%;
     overflow: hidden;
+    color: #fff; /* Ensure text is white */
 }
 
 .hero-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(90deg, rgba(15,20,25,0.95) 0%, rgba(15,20,25,0.8) 40%, rgba(15,20,25,0.4) 100%);
+    /* Lightened to 0.85 so background is visible */
+    background: linear-gradient(90deg, rgba(15,20,25,0.85) 0%, rgba(15,20,25,0.75) 40%, rgba(15,20,25,0.3) 100%);
     z-index: 1;
 }
 
@@ -196,13 +182,14 @@ nav.main-navigation {
     z-index: 2;
     display: flex;
     justify-content: space-between;
-    align-items: stretch; 
+    align-items: stretch;
 }
 
 .hero-col-text {
     flex: 1;
     align-self: center;
     padding-bottom: 50px;
+    padding-right: 2rem;
 }
 
 .hero-title {
@@ -247,16 +234,19 @@ nav.main-navigation {
 .hero-col-image {
     width: 45%;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-end; /* Stick to bottom */
     justify-content: flex-end;
 }
 
 .hero-col-image img {
     width: auto;
-    max-height: 500px;
+    height: 85%; /* Forces image to be 85% of container height */
+    max-height: none; /* Uncap height so it fills space */
     display: block;
     vertical-align: bottom;
     filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5));
+    object-fit: contain;
+    object-position: bottom right;
 }
 
 /* --- CONTENT AREA --- */
@@ -317,6 +307,11 @@ nav.main-navigation {
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
     .hero-container {
+        display: none; /* Hide Grid layout */
+    }
+    
+    /* Mobile fallback for hero */
+    .hero-grid {
         flex-direction: column;
         justify-content: center;
         padding-top: 8rem;
@@ -333,12 +328,11 @@ nav.main-navigation {
     .hero-col-image {
         width: 100%;
         justify-content: center;
+        height: 350px; /* Fixed height on mobile */
     }
     
-    .hero-col-image img { max-height: 350px; }
+    .hero-col-image img { height: 100%; }
     .hero-search .search-form { margin: 0 auto; }
-    
-    /* Mobile Menu Styling would go here (hamburger) */
     .nav-menu-wrapper { display: none; } 
 }
 
