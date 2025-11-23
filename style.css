@@ -3,7 +3,7 @@ Theme Name: Bibledoc Modern
 Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
 Description: A faithful recreation of the classic Bibledoc design.
-Version: 1.0.18
+Version: 1.0.19
 */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,23 +26,32 @@ a { text-decoration: none; color: inherit; }
 
 /* NAVIGATION */
 nav.main-navigation {
-    position: absolute; top: 0; left: 0; width: 100%; z-index: 1000; padding: 1.5rem 0;
+    position: absolute;
+    top: 0; left: 0; width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 0;
 }
+
 .nav-container {
     max-width: 1200px; margin: 0 auto; padding: 0 2rem;
     display: flex; justify-content: space-between; align-items: center;
 }
-.site-title { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; z-index: 1001; }
+
+.site-title { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 700; }
 .site-title a { color: #fff; }
+
 .nav-menu-wrapper { display: flex; align-items: center; gap: 2.5rem; }
+
 .primary-menu { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
 .primary-menu li { position: relative; }
 .primary-menu a { color: rgba(255,255,255,0.9); font-weight: 400; }
 .primary-menu a:hover { color: #fff; }
+
 .primary-menu .menu-item-has-children > a::after {
     content: ''; border: solid rgba(255,255,255,0.7); border-width: 0 2px 2px 0;
     display: inline-block; padding: 3px; margin-left: 8px; transform: rotate(45deg) translateY(-2px);
 }
+
 .primary-menu ul.sub-menu {
     display: none; position: absolute; top: 100%; left: -1rem;
     background: #1f2937; min-width: 220px; padding: 1rem 0;
@@ -50,93 +59,49 @@ nav.main-navigation {
 }
 .primary-menu li:hover > ul.sub-menu { display: block; }
 .primary-menu ul.sub-menu a { display: block; padding: 0.5rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
 .support-btn {
     background: #dc2626; color: #fff !important; padding: 0.7rem 2rem;
     font-weight: 500; border-radius: 2px;
 }
 .support-btn:hover { background: #b91c1c; }
 
-/* HERO SECTION - DESKTOP DEFAULTS */
-.hero-wrapper {
-    position: relative;
-    height: 550px; /* Desktop Height */
-    width: 100%;
-    overflow: hidden;
-    display: flex; 
-    align-items: center;
-}
-.hero-overlay {
-    position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;
-}
-.hero-grid {
-    max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 2rem;
-    position: relative; z-index: 10; height: 100%; display: flex;
-}
-
-/* Text Column */
-.hero-col-text {
-    flex: 1;
-    display: flex; flex-direction: column; justify-content: center;
-    padding-bottom: 50px; z-index: 20;
-}
-.hero-title { font-size: 4rem; margin-bottom: 1rem; }
-.hero-description { font-size: 1.5rem; margin-bottom: 2.5rem; }
-.hero-search { max-width: 500px; }
-
-/* Image Column - Desktop */
-.hero-col-image {
-    position: absolute; bottom: 0; right: 0; z-index: 5;
-}
-.hero-col-image img {
-    display: block; max-height: 450px; height: auto; width: auto;
-}
-
 /* CONTENT */
 .content-section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
 .section-title-red { color: #991b1b; font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 2rem; }
+
 .posts-list-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem 4rem; }
 .list-item { border-bottom: 1px solid #e5e7eb; padding-bottom: 1.2rem; margin-bottom: 0.5rem; }
 .list-title { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 400; color: #1f2937; }
+.list-title a:hover { color: #dc2626; }
 .list-meta { font-size: 0.8rem; color: #6b7280; text-transform: uppercase; font-weight: 600; }
+
 .site-footer { background: #111827; color: #9ca3af; padding: 4rem 2rem; text-align: center; margin-top: 4rem; }
 
-/* --- MOBILE RESPONSIVE OVERRIDES --- */
+/* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
-    /* Allow height to grow, force background to cover */
     .hero-wrapper { 
         height: auto !important; 
-        min-height: 100vh;
-        background-size: cover !important;
-        background-position: center !important;
-        display: block !important;
+        min-height: 60vh; /* Balanced height for mobile */
+        padding-bottom: 0;
     }
     
-    .hero-grid {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        padding-top: 100px; /* Clear header */
-    }
-    
-    /* Scale down text */
-    .hero-title { font-size: 2.5rem !important; text-align: center; }
-    .hero-description { font-size: 1.2rem !important; text-align: center; }
-    .hero-col-text { padding-bottom: 2rem; align-items: center; }
-    
-    /* Fix Image Layout for Mobile */
-    .hero-col-image {
-        position: relative !important; /* Un-anchor from absolute */
-        right: auto !important; 
-        bottom: auto !important;
-        width: 100%;
-        display: flex;
+    .hero-grid { 
+        flex-direction: column; 
+        padding-top: 80px; 
         justify-content: center;
-        margin-top: 2rem;
     }
     
-    .hero-col-image img {
-        max-height: 300px !important; /* Smaller image */
+    .hero-col-text { 
+        text-align: center; 
+        padding-right: 0 !important; 
+        padding-bottom: 0 !important; /* Remove bottom padding */
+        margin-bottom: 2rem; 
     }
     
-    .nav-menu-wrapper { display: none; } /* Hide desktop menu */
+    /* HIDE IMAGE ON MOBILE */
+    .hero-col-image { display: none !important; }
+    
+    .hero-search form { margin: 0 auto; }
+    .nav-menu-wrapper { display: none; } 
 }
