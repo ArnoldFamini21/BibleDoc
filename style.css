@@ -3,7 +3,7 @@ Theme Name: Bibledoc Modern
 Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
 Description: A faithful recreation of the classic Bibledoc design with modern code.
-Version: 1.0.9
+Version: 1.0.10
 */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,7 +33,7 @@ nav.main-navigation {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 1000; /* High z-index so menu floats over everything */
     padding: 1.5rem 0;
     background: transparent;
 }
@@ -59,21 +59,25 @@ nav.main-navigation {
 .nav-menu-wrapper {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 2.5rem; /* Space between menu and button */
 }
 
+/* Menu List Styling */
 .primary-menu {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
     list-style: none;
     margin: 0;
     padding: 0;
     align-items: center;
 }
 
-.primary-menu li { position: relative; }
+.primary-menu li {
+    position: relative; /* Needed for dropdown positioning */
+}
 
-.primary-menu a {
+/* Top Level Links */
+.primary-menu > li > a {
     color: rgba(255, 255, 255, 0.9);
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -81,22 +85,76 @@ nav.main-navigation {
     transition: color 0.2s;
     display: flex;
     align-items: center;
-    gap: 4px;
+    padding: 0.5rem 0;
 }
 
-.primary-menu a:hover { color: var(--white); }
+.primary-menu > li > a:hover { color: var(--white); }
 
+/* --- DROPDOWN STYLES --- */
+
+/* The Chevron Arrow */
 .primary-menu .menu-item-has-children > a::after {
     content: '';
-    border: solid white;
+    border: solid rgba(255,255,255,0.7);
     border-width: 0 2px 2px 0;
     display: inline-block;
     padding: 3px;
-    transform: rotate(45deg);
-    margin-top: -4px;
-    opacity: 0.8;
+    margin-left: 8px;
+    transform: rotate(45deg) translateY(-2px);
+    transition: all 0.2s;
 }
 
+.primary-menu .menu-item-has-children:hover > a::after {
+    border-color: var(--white);
+    transform: rotate(45deg) translateY(0);
+}
+
+/* The Dropdown Menu (Sub-menu) */
+.primary-menu ul.sub-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    left: -1rem;
+    background: #1f2937; /* Dark background like header */
+    min-width: 220px;
+    padding: 1rem 0;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 999;
+    list-style: none;
+    animation: fadeIn 0.2s ease;
+}
+
+/* Show Dropdown on Hover */
+.primary-menu li:hover > ul.sub-menu {
+    display: block;
+}
+
+/* Dropdown Items */
+.primary-menu ul.sub-menu li {
+    display: block;
+}
+
+.primary-menu ul.sub-menu a {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.primary-menu ul.sub-menu a:hover {
+    background: rgba(255,255,255,0.05);
+    color: var(--white);
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Support Button */
 .support-btn {
     background: #dc2626;
     color: white !important;
@@ -111,15 +169,15 @@ nav.main-navigation {
 
 .support-btn:hover { background: #b91c1c; }
 
-/* --- HERO SECTION (FLEXBOX ALIGNMENT) --- */
+/* --- HERO SECTION (Locked Height) --- */
 .hero-wrapper {
     position: relative;
     background-color: var(--bg-dark);
     background-size: cover;
     background-position: center;
-    min-height: 600px; /* Fixed min-height */
-    display: flex;
-    align-items: flex-end; /* Anchors everything to bottom */
+    height: 550px; 
+    width: 100%;
+    overflow: hidden;
 }
 
 .hero-overlay {
@@ -129,31 +187,28 @@ nav.main-navigation {
     z-index: 1;
 }
 
-/* The Main Layout Container */
-.hero-container {
-    width: 100%;
+.hero-grid {
     max-width: 1200px;
+    height: 100%;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
     z-index: 2;
-    height: 100%;
-    min-height: 600px; /* Matches wrapper to force full expansion */
     display: flex;
     justify-content: space-between;
+    align-items: stretch; 
 }
 
-/* Left Column: Text */
 .hero-col-text {
     flex: 1;
-    align-self: center; /* Vertically Center Text */
-    padding-bottom: 50px; /* Visual adjustment */
+    align-self: center;
+    padding-bottom: 50px;
 }
 
 .hero-title {
     font-family: 'Outfit', sans-serif;
     font-size: 4.2rem;
-    color: #ffffff !important; /* Forced White */
+    color: #ffffff !important;
     line-height: 1.1;
     margin-bottom: 1rem;
     font-weight: 500;
@@ -189,12 +244,10 @@ nav.main-navigation {
 .hero-search .search-field::placeholder { color: rgba(255, 255, 255, 0.7); }
 .hero-search .search-field:focus { background: rgba(255, 255, 255, 0.15); border-color: var(--white); }
 
-
-/* Right Column: Image */
 .hero-col-image {
     width: 45%;
     display: flex;
-    align-items: flex-end; /* KEY: Forces image to bottom floor */
+    align-items: flex-end;
     justify-content: flex-end;
 }
 
@@ -202,7 +255,7 @@ nav.main-navigation {
     width: auto;
     max-height: 500px;
     display: block;
-    vertical-align: bottom; /* Removes line-height gaps */
+    vertical-align: bottom;
     filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5));
 }
 
@@ -274,6 +327,7 @@ nav.main-navigation {
         text-align: center;
         flex: 0 0 auto;
         margin-bottom: 2rem;
+        padding-right: 0;
     }
     
     .hero-col-image {
@@ -283,6 +337,8 @@ nav.main-navigation {
     
     .hero-col-image img { max-height: 350px; }
     .hero-search .search-form { margin: 0 auto; }
+    
+    /* Mobile Menu Styling would go here (hamburger) */
     .nav-menu-wrapper { display: none; } 
 }
 
