@@ -3,7 +3,7 @@ Theme Name: Bibledoc Modern
 Theme URI: https://bibledoc.org
 Author: Pastor Arnold Famini
 Description: A faithful recreation of the classic Bibledoc design with modern code.
-Version: 1.0.5
+Version: 1.0.6
 */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -119,7 +119,6 @@ nav.main-navigation {
     background-color: var(--bg-dark);
     background-size: cover;
     background-position: center;
-    /* Remove flex here to allow inner section to control height */
     display: block; 
 }
 
@@ -136,16 +135,17 @@ nav.main-navigation {
     padding: 0 2rem;
     position: relative;
     z-index: 2;
-    min-height: 650px; /* Set height here */
+    /* Reduced height to remove gap */
+    min-height: 500px; 
     display: flex;
-    align-items: center; /* Vertically center text */
+    align-items: center;
 }
 
 .hero-content {
     max-width: 600px;
     position: relative;
-    z-index: 3; /* Above image */
-    margin-top: 4rem; /* Push down slightly for balance */
+    z-index: 3; 
+    margin-top: 2rem;
 }
 
 .hero-title {
@@ -188,7 +188,7 @@ nav.main-navigation {
 .hero-search .search-field::placeholder { color: rgba(255, 255, 255, 0.7); }
 .hero-search .search-field:focus { background: rgba(255, 255, 255, 0.15); border-color: var(--white); }
 
-/* Person Image - FIXED LAYOUT */
+/* Person Image */
 .hero-person {
     position: absolute;
     bottom: 0;
@@ -203,7 +203,8 @@ nav.main-navigation {
 }
 
 .hero-person img {
-    max-height: 550px; /* Control height so it fits nicely */
+    /* Matched to section min-height to fill space cleanly */
+    max-height: 500px; 
     width: auto;
     display: block;
     filter: drop-shadow(-20px 0 30px rgba(0,0,0,0.5));
@@ -271,9 +272,9 @@ nav.main-navigation {
         flex-direction: column;
         text-align: center;
         padding-top: 8rem;
+        padding-bottom: 4rem;
         min-height: auto;
         display: block;
-        padding-bottom: 0;
     }
     
     .hero-content { margin: 0 auto; margin-bottom: 2rem; }
@@ -284,7 +285,7 @@ nav.main-navigation {
         max-width: 400px;
         margin: 0 auto;
         right: auto;
-        bottom: auto;
+        bottom: -4rem; /* Pull image down to edge on mobile */
         justify-content: center;
     }
     
