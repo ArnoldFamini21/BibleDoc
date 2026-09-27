@@ -253,3 +253,14 @@ function bibledoc_mobile_body_class( $classes ) {
     return $classes;
 }
 add_filter( 'body_class', 'bibledoc_mobile_body_class' );
+
+/**
+ * Append Substack link to the primary menu (after Eugene's Blog)
+ */
+function bibledoc_add_substack_menu_item( $items, $args ) {
+    if ( 'primary' === $args->theme_location && false === strpos( $items, 'substack.com' ) ) {
+        $items .= '<li class="menu-item menu-item-substack"><a href="' . esc_url( 'https://substack.com/@eugeneprewitt' ) . '" target="_blank" rel="noopener">' . esc_html__( 'Substack', 'bibledoc-modern' ) . '</a></li>';
+    }
+    return $items;
+}
+add_filter( 'wp_nav_menu_items', 'bibledoc_add_substack_menu_item', 10, 2 );
